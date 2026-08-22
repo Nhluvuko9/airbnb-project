@@ -1,12 +1,14 @@
+import Header from '../components/Header';
+
 const Dashboard = () => {
     return (
         <div className="page-container">
-            <h2>Dashboard</h2>
+            <Header />
+            <div>
+                <h2>Host Dashboard</h2>
+            </div>
         </div>
-
-    )
-
-   
+    );   
 }
 
 export default Dashboard;
