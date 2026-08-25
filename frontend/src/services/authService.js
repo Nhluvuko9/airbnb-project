@@ -1,11 +1,11 @@
 const API_URL = 'http://localhost:5173/api/auth';
 
 export const authService = {
-    login: async (email, password) => {
+    login: async (username, password) => {
         const feedback = await fetch(`${API_URL}/login`, {
             method: 'POST',
             headers: { 'Content-type' : 'application/json'},
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ username, password }),
         });
 
         const data = await feedback.json();

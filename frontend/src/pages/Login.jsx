@@ -3,7 +3,7 @@ import { authService } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login () {
-    const [username, setusername] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function Login () {
         e.preventDefault();
         setErrorMessage("");
 
-        if (!username || !password) {
+        if (!username.trim() || !password.trim()) {
             setErrorMessage("Please fill in all fields.");
             return;
         }
@@ -37,10 +37,10 @@ export default function Login () {
             <div className="login-card">
                 <h2>Welcome, to Airbnb!</h2>
                 <div className="error-banner">{errorMessage}</div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate>
                     <div className="inputs">
                         <label htmlFor="username">Username</label>
-                        <input type="text" id="username" value={username} onChange={(e) => setusername(e.target.value)} placeholder="username" className={errorMessage && !username ? "input-error" : ""}/>
+                        <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" className={errorMessage && !username ? "input-error" : ""}/>
                     </div>
                     <div className="inputs">
                         <label htmlFor="password">Password</label>

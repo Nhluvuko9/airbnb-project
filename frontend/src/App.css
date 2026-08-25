@@ -5,6 +5,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* LOGIN PAGE */
 .login-page {
   display: flex;
   justify-content: center;
@@ -91,6 +92,7 @@ input {
   font-weight: 500;
 }
 
+/* DASHBOARD */
 .header {
   display: flex;
   justify-content: space-between;
@@ -116,4 +118,131 @@ input {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+
+/* CREATE LISTINGS PAGE */
+.listings-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: 450px;
+}
+
+.form-card {
+  border: none;
+  border-radius: 10px;
+  padding: 35px;
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); */
+  width: 100%;
+  max-width: 900px;
+}
+
+#create-listing-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 830px;
+  gap: 20px;
+  row-gap: 3px;
+}
+
+.form-card h2 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.inputs textarea {
+  padding: 8px;
+}
+
+.form-num-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.form-num-inputs .inputs{
+  width: 100px;
+}
+
+.price-type-inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.price-type-inputs .inputs {
+  width: 195px;
+}
+
+.price-type-inputs select {
+  height: 40px;
+  border: 1.5px solid #949393;
+  border-radius: 8px;
+}
+
+.location select{
+  height: 40px;
+  border: 1.5px solid #949393;
+  border-radius: 8px;
+}
+
+.image-upload label {
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+  gap: 3px;
+}
+.add-img-btn {
+  width: 120px;
+  height: 40px;
+  color: white;
+  background-color: #4254ef;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.87rem;
+}
+.image-upload label .image-upload-box {
+  height: 90px; 
+}
+
+.amenities {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.amenities input {
+  width: 320px;
+}
+.amenities-btn {
+  width: 70px;
+  height: 40px;
+  color: white;
+  background-color: #4254ef;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.87rem;
+}
+
+.listing-btns {
+  display: flex;
+  margin-top: 55px;
+  gap: 15px;
+}
+#create-btn {
+  width: 120px;
+  height: 40px;
+  color: white;
+  background-color: #4254ef;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.87rem;
+}
+#cancel-btn {
+  width: 120px;
+  height: 40px;
+  color: white;
+  background-color: #ef386c;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.87rem;
 }
