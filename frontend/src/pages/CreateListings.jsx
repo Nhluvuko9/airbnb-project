@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import Header from '../components/Header';
+import { propertyService } from '../services/propertyService';
+import { useNavigate } from 'react-router-dom'; 
 
 export default function CreateListings() {
+    const navigate = useNavigate();
+
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [type, setType] = useState("");
@@ -12,19 +16,46 @@ export default function CreateListings() {
     const [description, setDescription] = useState("");
     const [amenities, setAmenities] = useState("");
 
+    const [errorMessage, setErrorMessage] = useState("");
+    const [isLoading, setIsLoading] = useState("");
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        // const listingInformation = { title: String(title), location: String(location), type: String(type), price: Number(price), guests: Number(guests), bedrooms: Number(bedrooms), bathrooms: Number(bathrooms), description: String(description) };
-        console.log("Listing information form saved");
-    }; 
+        setErrorMessage("")
+
+        if (Number(price) <= 0 || Number(guests) <= 0) {
+            setErrorMessage("Price and guest count must be equal to or greater than 1");
+            return;
+        }
+
+        if(description.trim().length < 30) {
+            setErrorMessage("Description should be at least 30 characters long");
+            return;
+        }
+
+        setIsLoading(true);
+         
+        const listingdetails = { title: title.trim(), location, type, price: Number(price), guests: Number(guests), bedrooms: Number(bedrooms), bathrooms: Number(bathrooms), description: description.trim() };
     
+        try {
+            propertyService.create(listingdetails);
+            navigate('/dashboard');
+        } catch (error) {
+            setErrorMessage(error.message || "Networ error.");
+        } finally {
+            setIsLoading(false);
+        }
+
+    }; 
+  
     return (
         <div>
             <Header />
             <div className="listings-container">
                 <div className="form-card">
                     <h2>Create a new listing</h2>
+
+                    {errorMessage && <div className="error-banner">{errorMessage}</div>}
 
                     <form onSubmit={handleSubmit} id="create-listing-form">
                         <div className="inputs">
@@ -99,8 +130,8 @@ export default function CreateListings() {
                         </div>
                  
                         <div className="listing-btns">
-                            <button type="submit" id="create-btn">Create</button>
-                            <button id="cancel-btn">Cancel</button>
+                            <button type="submit" id="create-btn">{isLoading ? "Processing lising" : "Create"}</button>
+                            <button type="submit" id="cancel-btn">Cancel</button>
                         </div>
             
                     </form>
