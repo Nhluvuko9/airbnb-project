@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5173/api/properties';
+const API_URL = 'http://localhost:5000/api/properties';
 
 export const propertyService = {
     create: async (propertyDetails) => {
@@ -16,5 +16,16 @@ export const propertyService = {
             throw new Error(data.message || "Failed to save and upload listing.");
         }
         return data;
+    },
+
+    getAll: async () => {
+        const feedback = await fetch(API_URL);
+        const data = await feedback.json();
+
+        if (!feedback.ok) {
+            throw new Error(data.message || "Failed to save and upload listing.");
+        }
+        return data;
     }
 };
+

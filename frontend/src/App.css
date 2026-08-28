@@ -246,3 +246,26 @@ input {
   border-radius: 8px;
   font-size: 0.87rem;
 }
+
+/* DASHBOARD STYLES */
+.dashboard-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.property-card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.image-container {
+  width: 160px;
+  height: 140px;
+  object-fit: cover;
+}
+
+.card-details {
+  padding: 20px;
+}

@@ -14,7 +14,8 @@ export default function CreateListings() {
     const [bedrooms, setBedrooms] = useState("");
     const [bathrooms, setBathrooms] = useState("");
     const [description, setDescription] = useState("");
-    const [amenities, setAmenities] = useState("");
+    const [amenityInput, setAmenityInput] = useState("");
+    const [amenititesList, setAmenitiesList] = useState([]);
 
     const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState("");
@@ -47,6 +48,14 @@ export default function CreateListings() {
         }
 
     }; 
+
+    const handleAddAmenity = (e) => {
+        e.preventDefault();
+        if (amenityInput.trim() !== "") {
+            setAmenitiesList([...amenititesList, amenityInput.trim()]);
+            setAmenityInput("");
+        }
+    }
   
     return (
         <div>
@@ -72,10 +81,11 @@ export default function CreateListings() {
                             <div className="inputs">
                                 <label>Type</label>
                                 <select value={type} onChange={(e) => setType(e.target.value)} placeholder="Select an option" required>
+                                    <option value="select">-- Select accomodation --</option>
                                     <option value="House">House</option>
                                     <option value="Apartment">Apartment</option>
                                     <option value="Villa">Villa</option>
-                                    <option value="Room">Room</option>
+                                    <option value="Room">Private room</option>
                                 </select>
                             </div>
                         </div>
@@ -83,12 +93,12 @@ export default function CreateListings() {
                         <div className="inputs location">
                             <label>Location</label>
                             <select value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Select a location" required>
+                                <option value="select">-- Select a location --</option>
                                 <option value="New York">New York</option>
                                 <option value="Cape Town">Cape Town</option>
-                                <option value="London">London</option>
                                 <option value="Johannesburg">Johannesburg</option>
                                 <option value="Tokyo">Tokyo</option>
-                                <option value="Paris">Paris</option>
+                                <option value="Paris">Thailand</option>
                             </select>
                         </div>
 
@@ -124,13 +134,13 @@ export default function CreateListings() {
                         <div className="inputs">
                             <label>Amenities</label>
                             <div className="amenities">
-                                <input type="text" value={amenities} onChange={(e) => setAmenities(e.target.value)} required/>
-                                <button className='amenities-btn'>Add</button>
+                                <input type="text" value={amenityInput} onChange={(e) => setAmenityInput(e.target.value)} />
+                                <button className='amenities-btn' onClick={handleAddAmenity}>Add</button>
                             </div>
                         </div>
                  
                         <div className="listing-btns">
-                            <button type="submit" id="create-btn">{isLoading ? "Processing lising" : "Create"}</button>
+                            <button type="submit" id="create-btn">{isLoading ? "Processing lising" : "Create listing"}</button>
                             <button type="submit" id="cancel-btn">Cancel</button>
                         </div>
             

@@ -16,13 +16,13 @@ export default function Header() {
     return (
         <header className="header">
             <div className="logo">
-                <Link to="/dashboard">Host Dashboard</Link>
+                <Link to="/create-listing">Become a Host</Link>
             </div>
             <div className="nav-links">
                 {user ? (
                         <div className="user-menu">
                             <span>Hello, {user.username} ({user.role})</span>
-                            <Link to="/create-listings">Become a Host</Link>
+                            <Link to="/create-listing">Become a Host</Link>
                             <button onClick={handleLogout} className="logout-btn">Logout</button>
                         </div>
                 ) : (
