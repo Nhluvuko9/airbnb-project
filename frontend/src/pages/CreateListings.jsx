@@ -98,7 +98,7 @@ export default function CreateListings() {
                                 <option value="Cape Town">Cape Town</option>
                                 <option value="Johannesburg">Johannesburg</option>
                                 <option value="Tokyo">Tokyo</option>
-                                <option value="Paris">Thailand</option>
+                                <option value="Paris">Phuket</option>
                             </select>
                         </div>
 

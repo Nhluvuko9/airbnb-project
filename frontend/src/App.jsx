@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './pages/Login';
 import CreateListing from './pages/CreateListings';
 import Dashboard from './pages/Dashboard';
+import Homepage from './pages/Homepage';
 import './App.css';
 
 export default function App() {
@@ -10,7 +11,8 @@ export default function App() {
     <Router>
       <div className="app-container">
         <Routes>
-          <Route path='/' element={<Navigate to='/dashboard' replace />} />
+          <Route path='/' element={<Navigate to='/homepage' replace />} />
+          <Route path='/homepage' element={<Homepage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/create-listing' element={<CreateListing />} />
