@@ -232,3 +232,55 @@ main {
 	background-color: #ef386c;
   color: white;
 }
+
+.bottom-banner {
+	display: flex;
+	flex-direction: column;
+	padding-top: 50px;
+	cursor: pointer;
+}
+.getaway-list {
+	border-bottom: 1.45px solid rgb(224, 223, 223);
+}
+.getaway-list ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	font-size: 0.8rem;
+}
+
+.getaway-list li {
+	border-bottom: 0px solid rgb(224, 223, 223);
+	padding: 35px 20px 8px 0;
+}
+.getaway-list li:hover {
+	border-bottom-color: #ef386c;
+	border-bottom: 2px solid #ef386c;
+}
+
+.tourist-attractions ul {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	padding-top: 35px;
+}
+
+footer{
+	background-color: rgb(250, 249, 249);
+	padding: 40px;
+	font-size: 0.9rem;
+	line-height: 22px;
+}
+.footer-categories {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.copyright-section {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-top: 1.45px solid rgb(224, 223, 223);
+  margin-top: 30px;
+	padding: 15px 0;
+}

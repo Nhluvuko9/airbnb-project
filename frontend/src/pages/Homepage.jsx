@@ -9,7 +9,7 @@ export default function Homepage() {
         <div className="homepage-container">
             <Header />
             <div className="top-banner">
-                <img src="./public/assets/top-banner-bg.jpg" alt="Banner image" className="banner-img"/>
+                <img src="/assets/top-banner-bg.jpg" alt="Banner image" className="banner-img"/>
                 <h4>Not sure where to go? Perfect.</h4>
                 <button className="flexible-btn">I'm flexible</button>
             </div>
@@ -19,35 +19,35 @@ export default function Homepage() {
                     <h2>Inspiration for your next trip</h2>
                     <div className="trip-inspo-cards">
                         <div className="card">
-                            <img src="./public/assets/new-york.jpg" alt="New York card image" />
+                            <img src="/assets/new-york.jpg" alt="New York card image" />
                             <div className="card-info">
                                 <h4>New York</h4>
                                 <p>USA</p>
                             </div>
                         </div>
                         <div className="card">
-                            <img src="./public/assets/cape-town.jpg" alt="Cape Town card image" />
+                            <img src="/assets/cape-town.jpg" alt="Cape Town card image" />
                             <div className="card-info">
                                 <h4>Cape Town</h4>
                                 <p>South Africa</p>
                             </div>
                         </div>
                         <div className="card">
-                            <img src="./public/assets/tokyo.jpg" alt="Tokyo card image" />
+                            <img src="/assets/tokyo.jpg" alt="Tokyo card image" />
                             <div className="card-info">
                                 <h4>Tokyo</h4>
                                 <p>Japan</p>
                             </div>
                         </div>
                         <div className="card">
-                            <img src="./public/assets/johannesburg.jpg" alt="Johnnesburg card image" />
+                            <img src="/assets/johannesburg.jpg" alt="Johnnesburg card image" />
                             <div className="card-info">
                                 <h4>Johannesburg</h4>
                                 <p>South Africa</p>
                             </div>
                         </div>
                         <div className="card">
-                            <img src="./public/assets/thailand.jpg" alt="Phuket card image" />
+                            <img src="/assets/thailand.jpg" alt="Phuket card image" />
                             <div className="card-info">
                                 <h4>Phuket</h4>
                                 <p>Thailand</p>
@@ -66,7 +66,7 @@ export default function Homepage() {
                                 <h4>on your trip</h4>
                                 <button className="experience-btn">Experiences</button>
                             </div>
-                            <img src="./public/assets/things-to-do.jpg" alt="Discover experiences image1" />
+                            <img src="/assets/things-to-do.jpg" alt="Discover experiences image1" />
                         </div>
                         <div className="experience-card">
                             <div className="card-info-2">
@@ -74,7 +74,7 @@ export default function Homepage() {
                                 <h4>from home</h4>
                                 <button className="experience-btn-2">Online experiences</button>
                             </div>
-                            <img src="./public/assets/things-to-do-2.jpg" alt="Discover experiences image2" />
+                            <img src="/assets/things-to-do-2.jpg" alt="Discover experiences image2" />
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ export default function Homepage() {
                                 <desc>Airbnb Icon Streamline Icon: https://streamlinehq.com</desc>
                                 <path fill="#ffffff" d="M22.625775 16.9277c-0.105375 -0.2958 -0.228525 -0.581975 -0.345675 -0.84715 -0.18035 -0.407875 -0.369225 -0.81655 -0.55195 -1.211575l-0.01445 -0.031375c-1.629525 -3.528725 -3.3785 -7.105725 -5.198275 -10.631525l-0.07725 -0.1497c-0.18565 -0.360025 -0.37755 -0.732325 -0.5745 -1.0981 -0.23355 -0.462925 -0.516925 -0.89907 -0.845125 -1.300715 -0.369475 -0.44075 -0.831325 -0.7952225 -1.35295 -1.038425C13.143975 0.375935 12.5752 0.25 11.99945 0.25s-1.14445 0.1262225 -1.666075 0.369555c-0.52155 0.2433325 -0.983325 0.597925 -1.352625 1.0387625 -0.327825 0.40174 -0.61105 0.8377875 -0.844675 1.3004825 -0.19865 0.369075 -0.39235 0.7448 -0.57965 1.10815l-0.071725 0.1391C5.664825 7.7321 3.91585 11.3091 2.2863675 14.837525l-0.02374 0.05135c-0.17954 0.388625 -0.36517 0.790475 -0.5425175 1.191525 -0.117195 0.26495 -0.2401875 0.550925 -0.3456825 0.84745 -0.3021575 0.8079 -0.3984425 1.67805 -0.2801975 2.532275 0.125395 0.86325 0.47455 1.678925 1.012885 2.366075 0.538335 0.687175 1.247185 1.222 2.05631 1.5516 0.61115 0.24725 1.264625 0.37365 1.924075 0.3722 0.20715 0 0.414125 -0.01215 0.6199 -0.036075 0.83405 -0.106275 1.63845 -0.3777 2.366025 -0.798275 0.954375 -0.536175 1.89695 -1.32195 2.926625 -2.4448 1.029675 1.12285 1.972225 1.908625 2.926625 2.4448 0.72755 0.42065 1.531975 0.692 2.366 0.798275 0.205775 0.023925 0.4128 0.036075 0.619975 0.036075 0.659375 0.00145 1.31275 -0.12495 1.9239 -0.3722 0.80915 -0.3296 1.518025 -0.864425 2.0564 -1.5516 0.538375 -0.68715 0.887575 -1.50275 1.013 -2.366075 0.118075 -0.8543 0.0218 -1.72445 -0.280175 -2.532425Zm-10.625725 1.22415c-1.27465 -1.6157 -2.0926 -3.1161 -2.3796 -4.37395 -0.117575 -0.471325 -0.145325 -0.960475 -0.0818 -1.442075 0.05015 -0.353025 0.17985 -0.6901 0.3793 -0.9859 0.245425 -0.318275 0.56085 -0.57605 0.92185 -0.7534 0.361025 -0.177275 0.758025 -0.269525 1.1604 -0.269525 0.402425 0 0.79935 0.092325 1.160375 0.26975 0.361025 0.17735 0.67635 0.435125 0.9218 0.7534 0.19945 0.29595 0.329125 0.633025 0.3793 0.9861 0.063375 0.481825 0.03555 0.97115 -0.08225 1.4426 -0.2873 1.2577 -1.105025 2.75765 -2.379375 4.373Zm9.4171 1.0956c-0.087675 0.603575 -0.331875 1.1739 -0.708225 1.654325 -0.37645 0.4805 -0.872075 0.854525 -1.43785 1.084975 -0.572075 0.2292 -1.1929 0.310425 -1.804775 0.2361 -0.63605 -0.08195 -1.249025 -0.29125 -1.802025 -0.615475 -0.849525 -0.477275 -1.709475 -1.209975 -2.67715 -2.2848 1.5405 -1.899525 2.50245 -3.65035 2.858625 -5.2098 0.1603 -0.6558 0.19505 -1.3359 0.10245 -2.004475 -0.084025 -0.57595 -0.297875 -1.125425 -0.6254 -1.60695 -0.383725 -0.5195 -0.884275 -0.941825 -1.461325 -1.232875 -0.57715 -0.291025 -1.214675 -0.442675 -1.861275 -0.442675 -0.64655 0 -1.284125 0.151575 -1.861275 0.442525 -0.57715 0.290975 -1.0777 0.713225 -1.4614 1.232725 -0.327475 0.4814 -0.5413 1.0307 -0.6254 1.606525 -0.09265 0.66835 -0.0581 1.3481 0.101875 2.003675 0.355925 1.5601 1.317975 3.31135 2.858975 5.211475 -0.967675 1.074675 -1.82765 1.807375 -2.677175 2.284725 -0.552975 0.32415 -1.1659 0.5335 -1.80195 0.6154 -0.61195 0.074325 -1.2328 -0.0069 -1.804925 -0.2361 -0.56575 -0.23045 -1.061375 -0.604475 -1.437775 -1.0849 -0.376375 -0.4805 -0.620475 -1.050825 -0.708125 -1.6544 -0.0842975 -0.613575 -0.01255 -1.23845 0.208625 -1.81705 0.08405 -0.236325 0.18245 -0.46825 0.304325 -0.743775 0.172425 -0.389825 0.355425 -0.786 0.532425 -1.169125l0.023775 -0.051475c1.620375 -3.5087 3.35965 -7.0658 5.169575 -10.572625l0.07205 -0.1396c0.18425 -0.357525 0.374825 -0.72715 0.567075 -1.084325 0.183875 -0.36815 0.406475 -0.715725 0.664025 -1.036875 0.228175 -0.2756575 0.514575 -0.4976 0.83865 -0.6499625 0.32415 -0.1523675 0.677975 -0.231415 1.0362 -0.231415s0.712125 0.0789375 1.0362 0.2312475c0.32415 0.15231 0.610575 0.3742075 0.8388 0.64983 0.2577 0.3209 0.48035 0.668375 0.6641 1.0365 0.1905 0.354 0.379375 0.7203 0.5621 1.074525l0.0774 0.150225C16.9882 8.4 18.727425 11.957025 20.347975 15.4663l0.0146 0.031575c0.180075 0.3896 0.36625 0.79225 0.54155 1.1889 0.12205 0.2759 0.2206 0.508025 0.30445 0.743475 0.22105 0.578675 0.2928 1.20355 0.208575 1.8172Z" stroke-width="0.25"></path>
                             </svg>
-                            <img src="./public/assets/gift-cards.jpg" alt="Gift cards" className="gift-card-img" />
+                            <img src="/assets/gift-cards.jpg" alt="Gift cards" className="gift-card-img" />
                         </div>
                     </div>
                 </div>
@@ -112,10 +112,135 @@ export default function Homepage() {
                             <h1>hosting?</h1>
                             <button className="ask-btn">Ask a super host</button>
                         </div>
-                        <img src="./public/assets/laughter-img.jpg" alt="Questions about hosting image" />
+                        <img src="/assets/laughter-img.jpg" alt="Questions about hosting image" />
+                    </div>
+                </div>
+
+                <div className="bottom-banner">
+                    <h3>Inspiration for future getaways</h3>
+                    <div className="getaway-list">
+                        <ul>
+                            <li>Destinations for the arts and culture</li>
+                            <li>Destinations for outdoor adventure</li>
+                            <li>Mountain cabins</li>
+                            <li>Beach destinations</li>
+                            <li>Popular destinations</li>
+                            <li>Unique stays</li>
+                        </ul>
+                    </div>
+                    <div className="tourist-attractions">
+                        <ul>
+                            <li>
+                                <h4>Eiffel Tower</h4>
+                                <p>Paris, France</p>
+                            </li>
+                            <li>
+                                <h4>Statue of Liberty</h4>
+                                <p>New York, USA</p>
+                            </li>    
+                            <li>
+                                <h4>Shibuya Crossing</h4>
+                                <p>Tokyo, Japan</p>
+                            </li>
+                            <li>
+                                <h4>Big Ben</h4>
+                                <p>London, UK</p>
+                            </li>
+                            <li>
+                                <h4>Colosseum</h4>
+                                <p>Rome, Italy</p>
+                            </li>
+                            <li>
+                                <h4>Sydney Opera House</h4>
+                                <p>Sydney, Australia</p>
+                            </li>
+                            <li>
+                                <h4>Table Mountain</h4>
+                                <p>Cape Twon, South Africa</p>
+                            </li>
+                            <li>
+                                <h4>Sagrada Familia</h4>
+                                <p>Barcelona, Spain</p>
+                            </li>
+                            <li>
+                                <h4>Great Wall</h4>
+                                <p>Beijing,China</p>
+                            </li>
+                            <li>
+                                <h4>Christ the Redeemer</h4>
+                                <p>Rio de Janeiro, Brazil</p>
+                            </li>
+                            <li>
+                                <h4>Santorini</h4>
+                                <p>Santorini, Greece</p>
+                            </li>
+                            <li>
+                                <h4>Grand Canyon</h4>
+                                <p>Arizona, USA</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </main>
+
+            <footer>
+                <div className="footer-categories">
+                    <div className="support">
+                        <ul>
+                            <li style={{fontWeight: '700'}}>Support</li>
+                            <li>Help Center</li>
+                            <li>Safety information</li>
+                            <li>Cancellation options</li>
+                            <li>Our COVID-19 Response</li>
+                            <li>Supporting people with disabilities</li>
+                            <li>Report a neighbourhood concern</li>
+                        </ul>
+                    </div>
+                    <div className="community">
+                        <ul>
+                            <li style={{fontWeight: '700'}}>Community</li>
+                            <li>Airbnb.org: disaster relief housing</li>
+                            <li>Support Afghan refugee</li>
+                            <li>Combating discrimination</li>
+                            <li>Join the LGBTQ+ community</li>
+                            <li>Guest Referrals</li>
+                            <li>Gift cards</li>
+                        </ul>
+                    </div>
+                    <div className="hosting">
+                        <ul>
+                            <li style={{fontWeight: '700'}}>Hosting</li>
+                            <li>Try hosting</li>
+                            <li>AirCover: protection for Hosts</li>
+                            <li>Explore hosting resources</li>
+                            <li>Visit our community forum</li>
+                            <li>How to host responsibly</li>
+                            <li>Host an online experience</li>
+                        </ul>
+                    </div>
+                    <div className="about">
+                        <ul>
+                            <li style={{fontWeight: '700'}}>About</li>
+                            <li>Newsroom</li>
+                            <li>Learn about new features</li>
+                            <li>Letter from our founders</li>
+                            <li>Careers</li>
+                            <li>Investors</li>
+                            <li>Airbnb Luxe</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="copyright-section">
+                    <div className="privacy-terms">
+                        <p>© 2026 Airbnb Clone - Privacy - Terms - Sitemap</p>
+                    </div>
+                    <div className="footer-icons">
+                        <i class="material-icons">language</i>
+                    </div>
+
+                </div>
+            </footer>
    
         </div>
     )
