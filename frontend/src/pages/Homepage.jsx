@@ -1,13 +1,9 @@
-import Header from '../components/Header';
 import './Homepage.css';
-// import { useNavigate } from 'react-router-dom';
 
 export default function Homepage() {
-    // const navigate = useNavigate();
 
     return (
         <div className="homepage-container">
-            <Header />
             <div className="top-banner">
                 <img src="/assets/top-banner-bg.jpg" alt="Banner image" className="banner-img"/>
                 <h4>Not sure where to go? Perfect.</h4>
@@ -235,9 +231,18 @@ export default function Homepage() {
                     <div className="privacy-terms">
                         <p>© 2026 Airbnb Clone - Privacy - Terms - Sitemap</p>
                     </div>
+
                     <div className="footer-icons">
                         <i class="material-icons">language</i>
+                        <select className="language-select"><option>English</option></select>
+                        <select className="currency-select"><option>USD</option></select>
+                        <div className="social-media-icons">
+                            <img src="/assets/facebook-svgrepo-com.svg" alt="Facebook logo" />
+                            <img src="/assets/twitter-154-svgrepo-com.svg" alt="X logo" />
+                            <img src="/assets/instagram-svgrepo-com.svg" alt="Instagram logo" />
+                        </div>
                     </div>
+
 
                 </div>
             </footer>

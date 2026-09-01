@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Header from '../components/Header';
 import { propertyService } from '../services/propertyService';
 import { useNavigate } from 'react-router-dom'; 
 
@@ -59,7 +58,6 @@ export default function CreateListings() {
   
     return (
         <div>
-            <Header />
             <div className="listings-container">
                 <div className="form-card">
                     <h2>Create a new listing</h2>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { authService } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
+import HeaderLight from "../components/HeaderLight";
 
 export default function Login () {
     const [username, setUsername] = useState("");
@@ -34,6 +35,7 @@ export default function Login () {
 
     return (
         <div className="login-page">
+            <HeaderLight />
             <div className="login-card">
                 <h2>Welcome, to Airbnb!</h2>
                 <div className="error-banner">{errorMessage}</div>

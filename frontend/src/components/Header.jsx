@@ -1,7 +1,8 @@
 import { authService } from '../services/authService';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-// import './App.css';
+import { useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
+import Calendar from '../components/Calendar';
+import './Header.css';
 
 export default function Header() {
     const navigate = useNavigate();
@@ -13,23 +14,152 @@ export default function Header() {
         navigate('/login');
     };
 
-    return (
-        <header className="header">
-            <div className="logo">
-                <Link to="/create-listing">Become a Host</Link>
-            </div>
-            <div className="nav-links">
-                {user ? (
-                        <div className="user-menu">
-                            <span>Hello, {user.username} ({user.role})</span>
-                            <Link to="/create-listing">Become a Host</Link>
-                            <button onClick={handleLogout} className="logout-btn">Logout</button>
-                        </div>
-                ) : (
-                    <Link to="/login">Login</Link>
-                )}
-            </div>
-        </header>
-    );
+    const [location, setLocation] = useState("");
 
+    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+    const [checkInDate, setCheckInDate] = useState(null);
+    const [checkOutDate, setCheckOutDate] = useState(null);
+
+    const [isOpen, setIsOpen] = useState("");
+    const [guestCount, setGuestCount] = useState({
+        adults: 0,
+        children: 0
+    });
+
+    const updateCount = (type, count) => {
+        setGuestCount(prev => {
+            const current = prev[type];
+
+            if (count === "minus" && type === "adults" && current <= 1) return prev;
+            if (count === "minus" && current <= 0) return prev;
+
+            return {
+                ...prev,
+                [type]: count === "plus" ? current + 1 : current - 1
+            };
+        })
+    }
+
+    const totalGuests = guestCount.adults + guestCount.children;
+
+    const [isHomepage, setIsHomepage] = useState(window.location.pathname === '/homepage');
+    const [theme, setTheme] = useState(isHomepage ? "dark" : "light");
+    const headerBgColor = theme === "light" ? "white" : "black";
+
+    return (
+        <div className="header-container" onLoad={setIsHomepage && setTheme} style={{backgroundColor: headerBgColor}}>
+            <header className="top-header">
+                <div className="app-logo">
+                        <img src="/assets/airbnb-logo.jpg" alt="Airbnb logo"/>
+                </div>
+        
+                <div className="booking-details">
+                    {isHomepage && (
+                        <ul>
+                            <li>Places to stay</li>
+                            <li>Experiences</li>
+                            <li>Online experiences</li>
+                        </ul>
+                    )}
+                </div>
+        
+                <nav className="nav-links">
+                        <div className="become-a-host">
+                            <Link to="/create-listing" style={{color: theme === "light" ? "black" : "white", textDecoration: 'none'}}>Become a Host</Link>
+                        </div>
+                        <div className="header-icon">
+                            <i class="material-icons">language</i>
+                        </div>
+                        {user ? (
+                                <div className="user-menu">
+                                    <span>Hello, {user.username} ({user.role})</span>
+                                    <Link to="/create-listing" style={{color: theme === "light" ? "black" : "white", textDecoration: 'none'}}>Become a Host</Link>
+                                    <button onClick={handleLogout} className="logout-btn">Logout</button>
+                                </div>
+                        ) : (
+                            <div className="user-info">
+                                <i class="material-icons" style={{color: 'black'}}>dehaze</i>
+                                <Link to="/login" style={{color: '#aaaaaa', padding: '2.5px 0 0 4.5px'}}><i class="material-icons">account_circle</i></Link>
+                            </div>
+                        )}
+                </nav>
+            </header>
+
+            <div className="bottom-header">
+                <form>
+                    <div className="location-options">
+                        <label>Location</label>
+                        <select value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Select a location" required>
+                            <option value="select">Select a location</option>
+                            <option value="all">All Locations</option>
+                            <option value="New York">New York</option>
+                            <option value="Cape Town">Cape Town</option>
+                            <option value="Johannesburg">Johannesburg</option>
+                            <option value="Tokyo">Tokyo</option>
+                            <option value="Phuket">Phuket</option>
+                        </select>
+                    </div>
+
+                    <div className="date-selector">
+                        <div className="checkin-date">
+                            <label>Check in date</label>
+                            <div className="calendar-trigger" onClick={() => setIsCalendarOpen(!isCalendarOpen)}>
+                                <span>{checkInDate ? `Sept ${checkInDate}` : "Select a date"}</span>
+                            </div>
+                        </div>
+
+                        <div className="checkout-date">
+                            <label>Checkout date</label>
+                            <div className="calendar-trigger" onClick={() => setIsCalendarOpen(!isCalendarOpen)}>
+                                <span>{checkOutDate ? `Sept ${checkOutDate}` : "Select a date"}</span>
+                            </div>
+                        </div>
+                        {isCalendarOpen && (
+                            <Calendar 
+                                checkInDate={checkInDate}   
+                                checkOutDate={checkOutDate}
+                                setCheckInDate={setCheckInDate}
+                                setCheckOutDate={setCheckOutDate}
+                                onClose={() => setIsCalendarOpen(false)}
+                            />
+                        )}
+                    </div>
+                
+                    <div className="guest-options">
+                        <div className="guest-trigger" onClick={() => setIsOpen(!isOpen)}>
+                            <label>Guests</label>
+                            <div className="guest-total" style={{fontSize: '0.8rem'}}>
+                                {totalGuests} {totalGuests === 1 ? "guest" : "guests" }
+                            </div>
+                        </div>
+
+                        {isOpen && (
+                            <div className="guest-dropdown-menu">
+                                <div className="selector">
+                                    <p>Adults</p>
+                                    <div className="count-selector">
+                                        <button onClick={() => updateCount("adults", "minus")}>-</button>
+                                        <span>{guestCount.adults}</span>
+                                        <button onClick={() => updateCount("adults", "plus")}>+</button>
+                                    </div>
+                                </div>
+                                <div className="selector">
+                                    <p>Children</p>
+                                    <div className="count-selector">
+                                        <button onClick={() => updateCount("children", "minus")}>-</button>
+                                        <span>{guestCount.children}</span>
+                                        <button onClick={() => updateCount("children", "plus")}>+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="search">
+                        <i class="material-icons" style={{color: 'white'}}>search</i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
 }
