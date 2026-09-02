@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const propertySchema = new mongoose.Schema({
-    imageURL: { type: String, default: ''},
+    imageURL: { type: String, default: null},
     type: { type: String, required: [true, 'Type of accomodation is required'] },
     location: { type: String, required: [true, 'Location is required'] },
     guests: { type: Number, required: [true, ' Max number of guests is required'] },
@@ -19,4 +19,4 @@ const propertySchema = new mongoose.Schema({
     timestamps: true
 }); 
 
-module.export = mongoose.model('Property', propertySchema);
+module.exports = mongoose.model('Property', propertySchema);
