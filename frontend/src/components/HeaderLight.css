@@ -4,15 +4,17 @@
     justify-content: space-between;
     background-color: white;
     padding: 25px;
-    height: 80px;
+    height: 100px;
+    width: 100%;
 }
 
 #logo img {
     width: 110px;
-    height: 60px;
+    height: 46px;
 }
 
 #header-container .user-info {
     border: 1px solid #949393;
     border-radius: 16px;
+    height: 35px;
 }

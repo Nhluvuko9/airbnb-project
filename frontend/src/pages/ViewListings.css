@@ -1,0 +1,40 @@
+.viewpage {
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+}
+.viewpage header {
+    width: 100%;
+    height: 100px;
+}
+
+.listings {
+    display:flex;
+    flex-direction: column;
+    padding: 10px 15px;
+}
+
+.categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 16px ;
+}
+.categories button {
+    background-color: transparent;
+    color: black;
+    border: 1px solid #949393;
+    border-radius: 20px;
+    padding: 8px;
+    cursor: pointer;
+}
+.categories button Link {
+    text-decoration: none;
+    color: black;
+}
+
+
+.my-listings {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { propertyService } from '../services/propertyService';
 import { useNavigate } from 'react-router-dom'; 
+import './CreateListings.css';
 
 export default function CreateListings() {
     const navigate = useNavigate();
@@ -96,7 +97,7 @@ export default function CreateListings() {
                                 <option value="Cape Town">Cape Town</option>
                                 <option value="Johannesburg">Johannesburg</option>
                                 <option value="Tokyo">Tokyo</option>
-                                <option value="Paris">Phuket</option>
+                                <option value="Phuket">Phuket</option>
                             </select>
                         </div>
 
@@ -138,8 +139,7 @@ export default function CreateListings() {
                         </div>
                  
                         <div className="listing-btns">
-                            <button type="submit" id="create-btn">{isLoading ? "Processing lising" : "Create listing"}</button>
-                            <button type="submit" id="cancel-btn">Cancel</button>
+                            <button type="submit" id="create-btn">{isLoading ? "Processing listing" : "Create listing"}</button>
                         </div>
             
                     </form>

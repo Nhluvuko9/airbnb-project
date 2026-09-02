@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Header from '../components/Header';
+import HeaderLight from '../components/HeaderLight';
 import PropertyCard from '../components/PropertyCard';
 import { propertyService } from '../services/propertyService';
 
@@ -22,9 +22,24 @@ export default function Dashboard () {
         }; displayPropertites();
     }, []);
 
+
+    const handleDeleteClick = async (id) => {
+        if (!window.confirm("Are you sure you want to delete this property?")) {
+            return;
+        }
+
+        try {
+            await propertyService.delete(id);
+            // Remove the deleted property from the state
+            setProperties(properties.filter((_, index) => index !== id));
+        } catch (error) {
+            setErrorMessage(error.message || "Could not delete listing.");
+        }
+    };
+
     return (
         <div>
-            <Header />
+            <HeaderLight />
             <div className='dashboard-container'>
                 <h2>Host dashboard</h2>
 
@@ -39,7 +54,7 @@ export default function Dashboard () {
                     </div>
                 ) : (<div className='property-grid'>
                         {properties.map((item) => (
-                            <PropertyCard property={item}/>
+                            <PropertyCard property={item} onDeleteClick={handleDeleteClick} />
                         ))}
                 </div>)}
             </div>
