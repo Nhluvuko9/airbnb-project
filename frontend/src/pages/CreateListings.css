@@ -2,15 +2,13 @@
 .listings-container {
   display: flex;
   justify-content: center;
-  padding: 40px 20px;
+  align-items: center;
   min-height: 450px;
+  padding: 35px;
 }
 
 .form-card {
   border: none;
-  border-radius: 10px;
-  padding: 35px;
-  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); */
   width: 100%;
   max-width: 900px;
 }
@@ -87,10 +85,16 @@
   border: none;
   border-radius: 8px;
   font-size: 0.87rem;
+  cursor: pointer;
 }
 .image-upload label .image-upload-box {
   height: 90px; 
+  cursor: pointer;
 }
+
+/* .image-upload-box {
+  display: none;
+} */
 
 .amenities {
   display: flex;

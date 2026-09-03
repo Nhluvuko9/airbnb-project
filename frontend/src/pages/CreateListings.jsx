@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { propertyService } from '../services/propertyService';
 import { useNavigate } from 'react-router-dom'; 
 import './CreateListings.css';
+import HeaderLight from '../components/HeaderLight';
 
 export default function CreateListings() {
     const navigate = useNavigate();
@@ -14,13 +15,14 @@ export default function CreateListings() {
     const [bedrooms, setBedrooms] = useState("");
     const [bathrooms, setBathrooms] = useState("");
     const [description, setDescription] = useState("");
+    const [imageFile, setImageFile] = useState(null);
     const [amenityInput, setAmenityInput] = useState("");
     const [amenititesList, setAmenitiesList] = useState([]);
 
     const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage("")
 
@@ -35,19 +37,45 @@ export default function CreateListings() {
         }
 
         setIsLoading(true);
-         
-        const listingdetails = { title: title.trim(), location, type, price: Number(price), guests: Number(guests), bedrooms: Number(bedrooms), bathrooms: Number(bathrooms), description: description.trim() };
-    
+
+        const formDataPayload = new FormData();
+        formDataPayload.append('title', title.trim());
+        formDataPayload.append('location', location.trim());
+        formDataPayload.append('type', type);
+        formDataPayload.append('price', Number(price));
+        formDataPayload.append('guests', Number(guests));
+        formDataPayload.append('bedrooms', Number(bedrooms));
+        formDataPayload.append('bathrooms', Number(bathrooms));
+        formDataPayload.append('description', description.trim());
+
+        if (imageFile) {
+            formDataPayload.append('image', imageFile);
+        } 
         try {
-            propertyService.create(listingdetails);
+            await propertyService.create(formDataPayload);
             navigate('/dashboard');
         } catch (error) {
-            setErrorMessage(error.message || "Networ error.");
-        } finally {
-            setIsLoading(false);
+            setErrorMessage(error.message || "Network error")
         }
 
+        // const listingdetails = { title: title.trim(), location, type, price: Number(price), guests: Number(guests), bedrooms: Number(bedrooms), bathrooms: Number(bathrooms), description: description.trim() };
+        // try {
+        //     await propertyService.create(listingdetails);
+        //     navigate('/dashboard');
+        // } catch (error) {
+        //     setErrorMessage(error.message || "Networ error.");
+        // } finally {
+        //     setIsLoading(false);
+        // }
+
     }; 
+
+    const handleFileChange = (e) => {
+        const selectedFile = e.target.files[0];
+        if (selectedFile) {
+            setImageFile(selectedFile);
+        }
+    };
 
     const handleAddAmenity = (e) => {
         e.preventDefault();
@@ -59,6 +87,7 @@ export default function CreateListings() {
   
     return (
         <div>
+            <HeaderLight />
             <div className="listings-container">
                 <div className="form-card">
                     <h2>Create a new listing</h2>
@@ -124,12 +153,15 @@ export default function CreateListings() {
 
                         <div className="image-upload">
                             <label htmlFor="upload-box">
-                                <button className="add-img-btn">Upload Images</button>
-                                <input type="file" className="image-upload-box" accept="image/*" require />
+                                <div className="add-image">
+                                    <button className="add-img-btn">
+                                        {imageFile ? `selected: ${imageFile.name}` : 'Upload Images'}
+                                    </button>
+                                </div>
+                                <input type="file" className="image-upload-box" accept="image/*" onChange={handleFileChange} require />
                             </label>
                         </div>
-
-                        
+   
                         <div className="inputs">
                             <label>Amenities</label>
                             <div className="amenities">

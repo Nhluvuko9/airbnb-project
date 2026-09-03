@@ -1,14 +1,14 @@
 const API_URL = 'http://localhost:5000/api/properties';
 
 export const propertyService = {
-    create: async (propertyDetails) => {
+    create: async (formDataPayload) => {
         const token = localStorage.getItem('token');
 
         try {
             const feedback = await fetch(API_URL, {
                 method: 'POST',
-                headers: { 'Content-type' : 'application/json', 'Authorization' : `Bearer ${token}`},
-                body: JSON.stringify({ propertyDetails }),
+                headers: { 'Authorization' : `Bearer ${token}` },
+                body: formDataPayload
             });
     
             // const data = await feedback.json();

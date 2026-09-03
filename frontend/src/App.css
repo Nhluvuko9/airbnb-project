@@ -13,7 +13,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  padding: 0 15px;
   background-color: white;
 }
 
@@ -35,7 +36,7 @@
   align-items: center;
   flex-direction: column;
   background-color: #ffff;
-  padding: 20px;
+  padding: 15px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   width: 500px;
@@ -70,12 +71,19 @@ input {
 
 .login-btn {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-#login-btn {
   margin-top: 50px;
+}
+
+.login-btn p {
+  color: #3044f1;
+}
+
+#login-btn {
+  margin-top: 15px;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -119,23 +127,11 @@ input {
   height: 40px;
 }
 
-.logout-btn {
-  text-align: center;
-  padding: 7px 12px;
-  font-size: 1.25rem;
-  font-weight: 600;
-  background-color: #ef386c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
 /* DASHBOARD STYLES */
 .dashboard-container {
   max-width: 100%;
   margin: 0 auto;
-  padding: 40px;
+  padding: 0 25px;
 }
 
 .property-card {
@@ -145,11 +141,39 @@ input {
 }
 
 .image-container {
-  width: 160px;
-  height: 140px;
+  width: 660px;
+  height: 440px;
   object-fit: cover;
 }
 
 .card-details {
   padding: 20px;
+}
+
+/* NOTIFICATION STYLES */
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  gap: 10px;
+  animation: slideIn 0.5s ease-in-out;
+}
+
+.notification-icon {
+  font-size: 18px;
+}
+
+.notification.error {
+  background-color: #ffebee;
+  border: 1px solid #c62828;
+  color: #c62828;
+}
+
+.notification.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
 }

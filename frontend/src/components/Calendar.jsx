@@ -18,8 +18,10 @@ export default function Calendar({ checkInDate, setCheckInDate, checkOutDate, se
     };  
     
     const calendarGrid = [
-        ...Array(emptyDays).fill(null), // Empty days
-        ...Array.from({ length: daysInMonth }, (_, i) => i + 1) // Days of the month
+        // Empty days
+        ...Array(emptyDays).fill(null), 
+        // Days of the month
+        ...Array.from({ length: daysInMonth }, (_, i) => i + 1) 
     ];
 
     return (

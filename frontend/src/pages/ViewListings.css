@@ -1,7 +1,6 @@
 .viewpage {
     display: flex;
     flex-direction: column;
-    padding: 0 15px;
 }
 .viewpage header {
     width: 100%;

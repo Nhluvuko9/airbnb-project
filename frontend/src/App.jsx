@@ -33,9 +33,9 @@ export default function App() {
                 <Outlet />
               </div>
             </>}>
-              <Route path='/create-listing' element={<CreateListing />} />
           </Route>
 
+          <Route path='/create-listing' element={<CreateListing />} />
           <Route path='/login' element={<Login />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/view-listings' element={<ViewListings />} />

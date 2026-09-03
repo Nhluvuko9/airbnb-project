@@ -9,7 +9,7 @@ export default function Login () {
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
    
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage("");
 
@@ -24,8 +24,8 @@ export default function Login () {
         }
 
         try {
-            authService.login(username, password);
-            navigate('/dashboard');
+            await authService.login(username, password);
+            navigate('/homepage');
         } catch (error) {
             setErrorMessage(error.message || 'Something went wrong.')
         }
@@ -46,10 +46,12 @@ export default function Login () {
                     </div>
                     <div className="inputs">
                         <label htmlFor="password">Password</label>
-                        <input type="text" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className={errorMessage && !password ? "input-error" : ""}/>
+                        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className={errorMessage && password.length < 8 ? "input-error" : ""}/>
                     </div>
 
+
                     <div className="login-btn">
+                        <p>Forgot password?</p>
                         <button type="submit" id="login-btn">Login</button>
                     </div>
                 </form>

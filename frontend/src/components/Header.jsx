@@ -1,16 +1,38 @@
 import { authService } from '../services/authService';
 import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Calendar from '../components/Calendar';
 import './Header.css';
 
-export default function Header() {
+export default function Header({ theme } ) {
     const navigate = useNavigate();
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [user, setUser] = useState();
+    const dropdownRef = useRef(null);
 
-    const user = JSON.parse(localStorage.getItem('user'));
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            try {
+                return JSON.parse(storedUser);
+            } catch (error) {
+                console.error("Parsing user data failed:", error);
+            }
+        }
+
+        // const handleClickOutside = (event) => {
+        //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        //         setShowDropdown(false);
+        //     }
+        // };
+        // document.addEventListener('mouseover', handleClickOutside);
+        // return () => document.removeEventListener('mouseover', handleClickOutside);
+    }, []);
 
     const handleLogout = () => {
         authService.logout();
+        setUser(null);
+        setShowDropdown(false);
         navigate('/login');
     };
 
@@ -43,9 +65,10 @@ export default function Header() {
     const totalGuests = guestCount.adults + guestCount.children;
 
     const [isHomepage, setIsHomepage] = useState(window.location.pathname === '/homepage');
-    const [theme, setTheme] = useState(isHomepage ? "dark" : "light");
+    const [setTheme] = useState(isHomepage ? "dark" : "light");
     const headerBgColor = theme === "light" ? "white" : "black";
 
+    console.log("Header read user data", localStorage.getItem('user'))
     return (
         <div className="header-container" onLoad={setIsHomepage && setTheme} style={{backgroundColor: headerBgColor}}>
             <header className="top-header">
@@ -54,34 +77,68 @@ export default function Header() {
                 </div>
         
                 <div className="booking-details">
-                    {isHomepage && (
                         <ul>
                             <li>Places to stay</li>
                             <li>Experiences</li>
                             <li>Online experiences</li>
                         </ul>
-                    )}
+                    {/* {!isHomepage && (
+                    )} */}
                 </div>
         
                 <nav className="nav-links">
+                    {user && (user.role === 'host' || user.role === 'admin') && (
                         <div className="become-a-host">
                             <Link to="/create-listing" style={{color: theme === "light" ? "black" : "white", textDecoration: 'none'}}>Become a Host</Link>
                         </div>
+                    )}
                         <div className="header-icon">
-                            <i class="material-icons">language</i>
+                            <i className="material-icons" style={{color: theme === "light" ? "black" : "white"}}>language</i>
                         </div>
-                        {user ? (
-                                <div className="user-menu">
+
+                        <div className="user-info" ref={dropdownRef}>
+                            <button onClick={() => setShowDropdown(!showDropdown)} className="menu-trigger"> 
+                                <i className="material-icons" style={{color: 'black'}}>dehaze</i>
+                            </button> 
+                            <Link to="/login" style={{color: '#aaaaaa', padding: '2.5px 0 0 4.5px'}}>
+                                <i className="material-icons">account_circle</i>
+                            </Link>
+                            {!showDropdown && (
+                                <div className="dropdown-menu">
+                                    {!user ? (
+                                        <>
+                                        <button onClick={() => navigate('/dashboard')} className="reservation">
+                                            View Reservations
+                                        </button>
+                                        <button onClick={handleLogout} className="logout-btn">Logout</button>
+                                        </>
+                                    ) : (
+                                        <Link to="/login" style={{color: '#aaaaaa', padding: '2.5px 0 0 4.5px'}}>
+                                            <i className="material-icons">account_circle</i>
+                                        </Link>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+
+
+                        {/* {user ? (
+                                <div className="user-menu" style={{color: theme === "light" ? "black" : "white"}}>
                                     <span>Hello, {user.username} ({user.role})</span>
-                                    <Link to="/create-listing" style={{color: theme === "light" ? "black" : "white", textDecoration: 'none'}}>Become a Host</Link>
+
+                                    {(user.role === "host" || user.role === "admin") && (
+                                        <div className="become-a-host">
+                                            <Link to="/create-listing" style={{color: theme === "light" ? "black" : "white", textDecoration: 'none'}}>Become a Host</Link>
+                                        </div>
+                                    )}
                                     <button onClick={handleLogout} className="logout-btn">Logout</button>
                                 </div>
                         ) : (
                             <div className="user-info">
-                                <i class="material-icons" style={{color: 'black'}}>dehaze</i>
-                                <Link to="/login" style={{color: '#aaaaaa', padding: '2.5px 0 0 4.5px'}}><i class="material-icons">account_circle</i></Link>
+                                <i className="material-icons" style={{color: 'black'}}>dehaze</i>
+                                <Link to="/login" style={{color: '#aaaaaa', padding: '2.5px 0 0 4.5px'}}><i className="material-icons">account_circle</i></Link>
                             </div>
-                        )}
+                        )} */}
                 </nav>
             </header>
 
@@ -156,7 +213,7 @@ export default function Header() {
                     </div>
 
                     <div className="search">
-                        <i class="material-icons" style={{color: 'white'}}>search</i>
+                        <i className="material-icons" style={{color: 'white'}}>search</i>
                     </div>
                 </form>
             </div>
