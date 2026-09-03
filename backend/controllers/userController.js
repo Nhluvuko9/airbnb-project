@@ -61,7 +61,8 @@ const loginUser = async (req, res) => {
                 id: user.id,
                 role: user.role
             },
-            process.env.JWT_SECRET
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
         )
 
         // User details and token confirmed and displayed

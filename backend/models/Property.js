@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const propertySchema = new mongoose.Schema({
-    imageURL: { type: String, default: null},
+    imageURL: { type: String, default: 'https://placehold.co/600x400?text=No+image'},
     type: { type: String, required: [true, 'Type of accomodation is required'] },
     location: { type: String, required: [true, 'Location is required'] },
     guests: { type: Number, required: [true, ' Max number of guests is required'] },

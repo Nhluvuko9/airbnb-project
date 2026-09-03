@@ -1,20 +1,58 @@
+const { error } = require('console');
 const Property = require('../models/Property');
+const multer = require('multer');
+const path = require('path');
+
+// Configure where to store files on server
+const storageEngine = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+// Initialize Multer upload
+const upload = multer({ storage: storageEngine }).single('image');
 
 // Create new property listing (POST)
 const createProperty = async (req, res) => {
-    try {
-        console.log("incoming form layout data received:", req.body)
+    upload(req, res, async (err) => {
+        if (err) {
+            console.log("File upload middleware error:", err);
+            return res.status(500).json({ message: "File processing error." });
+        }
 
-        const newProperty = await Property.create(req.body.propertyDetails);
-        
-        res.status(201).json({ 
-            message: 'New listing created successfully!', 
-            property: newProperty
-        });
-    } catch (error) {
-        console.error('Property listing creation error:', error);
-        res.status(400).json({ message: 'Error creating new property listing' })
-    }
+        try {
+            console.log("Incoming text fields:", req.body);
+            console.log("Incoming File data:", req.file);
+
+            const listingData = {
+                title: req.body.title,
+                location: req.body.location,
+                type: req.body.type,
+                price: Number(req.body.price),
+                guests: Number(req.body.guests),
+                bedrooms: Number(req.body.bedrooms),
+                bathrooms: Number(req.body.bathrooms),
+                description: req.body.description,
+            };
+            if (req.file) {
+                listingData.imageURL = `http://localhost:5000/uploads/${req.file.filename}`;
+            }
+
+            const newProperty = await Property.create(listingData);
+            
+            res.status(201).json({ 
+                message: 'New listing created successfully!', 
+                property: newProperty
+            });
+        } catch (error) {
+            console.error('Property listing creation error:', error);
+            res.status(400).json({ message: 'Error creating new property listing' })
+        }
+    });
 };
 
 // Get all property listings from database (GET)
@@ -50,7 +88,10 @@ const updateProperty = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const dataToUpdate = req.body.propertyDetails || req.body; 
+        const dataToUpdate = { ...(req.body.propertyDetails || req.body) };
+        if (!dataToUpdate.imageURL) {
+            delete dataToUpdate.imageURL;
+        }
 
         const updatedProperty = await Property.findByIdAndUpdate(id, dataToUpdate, { new: true, runValidators: true });
         

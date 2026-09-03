@@ -12,6 +12,7 @@ const app = express();
 //Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
 app.use('/api/auth', require('./routes/userRoutes'));
 app.use('/api/properties', require('./routes/propertyRoutes'));
 
