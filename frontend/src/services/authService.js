@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api/auth';
+const API_URL = 'https://airbnb-project-backend-dal9.onrender.com/';
 
 export const authService = {
     // Send login credentials to backend
