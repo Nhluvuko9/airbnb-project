@@ -1,0 +1,293 @@
+.details-container {
+    margin: 0;
+    padding: 0 70px;
+}
+
+/* Image layout */
+.image-collection {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 8px;
+    height: 460px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 48px;
+}
+
+.large-image, .small-images, img {
+    width: 100%;
+    height: 99%;
+    object-fit: cover;
+}
+
+.small-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 8px;
+}
+
+/* Content layout */
+.content {
+    display: flex;
+    justify-content: space-between;
+    gap: 64px;
+}
+
+.left-column-info {
+    flex: 2;
+}
+
+.right-column-info {
+    flex: 1;
+}
+
+.feature {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.feature i {
+    font-size: 24px;
+}
+
+.feature h4 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+}
+
+.feature p {
+    margin: 0;
+    color: #717171;
+    font-size: 14px;
+}
+
+/* Calculator section */
+.calculator-card {
+    border: 1px solid #dddddd;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+    position: sticky;
+    top: 100px;
+    background: white;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.calc-inputs-box {
+    border: 1px solid #b0b0b0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.dates-row {
+    display: flex;
+    border-bottom: 1px solid #b0b0b0;
+}
+
+.date-input-wrapper {
+    flex: 1;
+    padding: 10px;
+}
+
+.date-input-wrapper:first-child {
+    border-right: 1px solid #b0b0b0;
+}
+
+.guest-input-wrapper {
+    padding: 10px;
+}
+
+.calc-inputs-box label {
+    font-size: 9px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.calc-inputs-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.reserve-action-btn {
+    width: 100%;
+    background-color: #ef386c;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.notice-subtext {
+    text-align: center;
+    font-size: 14px;
+    color: #717171;
+    margin: 12px 0;
+}
+
+.cost-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #222222;
+    font-size: 15px;
+}
+
+.total-row {
+    font-size: 18px;
+    margin-top: 12px;
+}
+
+/* ================================= */
+/* LOCATION DETAILS RESPONSIVE */
+/* ================================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+
+    .details-container {
+        padding: 0 30px;
+    }
+
+    .image-collection {
+        height: 380px;
+        margin-bottom: 35px;
+    }
+
+    .small-images {
+        gap: 6px;
+    }
+
+    .content {
+        gap: 30px;
+    }
+
+    .left-column-info {
+        flex: 1.5;
+    }
+
+    .right-column-info {
+        flex: 1;
+    }
+
+    .calculator-card {
+        padding: 18px;
+    }
+
+    .card-header {
+        margin-bottom: 18px;
+    }
+}
+
+/* Phone */
+@media (max-width: 480px) {
+
+    .details-container {
+        padding: 0 15px;
+    }
+
+    .image-collection {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 6px;
+        margin-bottom: 30px;
+    }
+
+    .large-image {
+        width: 100%;
+        height: 280px;
+    }
+
+    .small-images {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        height: 140px;
+        gap: 6px;
+    }
+
+    .small-images img {
+        width: 100%;
+        height: 140px;
+    }
+
+    .content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .left-column-info,
+    .right-column-info {
+        width: 100%;
+    }
+
+    .feature {
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    .feature i {
+        font-size: 21px;
+    }
+
+    .feature h4 {
+        font-size: 15px;
+    }
+
+    .feature p {
+        font-size: 13px;
+    }
+
+    .calculator-card {
+        position: static;
+        width: 100%;
+        padding: 18px;
+    }
+
+    .card-header {
+        margin-bottom: 18px;
+    }
+
+    .dates-row {
+        flex-direction: row;
+    }
+
+    .date-input-wrapper {
+        padding: 9px;
+    }
+
+    .guest-input-wrapper {
+        padding: 9px;
+    }
+
+    .reserve-action-btn {
+        padding: 13px;
+        font-size: 15px;
+    }
+
+    .notice-subtext {
+        font-size: 13px;
+    }
+
+    .cost-row {
+        font-size: 14px;
+    }
+
+    .total-row {
+        font-size: 17px;
+    }
+}

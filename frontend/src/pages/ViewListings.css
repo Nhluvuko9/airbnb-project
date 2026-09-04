@@ -1,3 +1,9 @@
+.dashboard-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 25px;
+}
+
 .viewpage {
     display: flex;
     flex-direction: column;
@@ -32,8 +38,82 @@
     color: black;
 }
 
-
 .my-listings {
     display: flex;
     flex-direction: column;
+}
+
+.property-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+/* ================================= */
+/* VIEW LISTINGS - RESPONSIVE */
+/* ================================= */
+
+/* TABLETS */
+@media (max-width: 768px) {
+
+    .dashboard-container {
+        padding: 0 20px;
+    }
+
+    .viewpage header {
+        height: 80px;
+    }
+
+    .listings {
+        padding: 10px;
+    }
+
+    .categories {
+        gap: 10px;
+    }
+
+    .categories button {
+        padding: 7px 12px;
+        font-size: 0.9rem;
+    }
+     .property-grid {
+        gap: 20px;
+        padding: 10px;
+    }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+
+    .dashboard-container {
+        padding: 0 15px;
+    }
+
+    .viewpage header {
+        height: 70px;
+    }
+
+    .listings {
+        padding: 8px 5px;
+    }
+
+    .categories {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .categories button {
+        padding: 7px 10px;
+        font-size: 0.85rem;
+    }
+
+    .my-listings {
+        width: 100%;
+    }
+     .property-grid {
+        gap: 20px;
+        padding: 10px;
+    }
 }

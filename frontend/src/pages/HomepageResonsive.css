@@ -1,0 +1,283 @@
+/* ================================= */
+/* HOMEPAGE RESPONSIVE */
+/* ================================= */
+
+/* TABLETS */
+@media (max-width: 768px) {
+
+    main {
+        padding: 30px;
+    }
+
+    .top-banner img.banner-img {
+        width: 100%;
+        height: 70vh;
+    }
+
+    .top-banner h4 {
+        bottom: 100px;
+        font-size: 0.9rem;
+    }
+
+    .flexible-btn {
+        bottom: 100px;
+    }
+
+    .middle-banner-1 h2,
+    .middle-banner-2 h2,
+    .middle-banner-3 h2 {
+        font-size: 1.5rem;
+    }
+
+    .trip-inspo-cards {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .card {
+        width: 180px;
+    }
+
+    .discovery-cards {
+        gap: 15px;
+    }
+
+    .experience-card {
+        width: 50%;
+    }
+
+    .experience-card img {
+        height: 500px;
+    }
+
+    .card-info-2 {
+        left: 30px;
+        bottom: 30px;
+    }
+
+    .card-info-2 h4 {
+        font-size: 1.5rem;
+    }
+
+    .gift-cards {
+        gap: 20px;
+    }
+
+    .gift-card-img {
+        max-width: 450px;
+        height: 180px;
+    }
+
+    .questions-card img {
+        height: 450px;
+    }
+
+    .card-info-4 {
+        left: 50px;
+        bottom: 40px;
+        font-size: 1.5rem;
+    }
+
+    .tourist-attractions ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    footer {
+        padding: 30px;
+    }
+
+    .footer-categories {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .copyright-section {
+        gap: 20px;
+    }
+}
+
+
+/* PHONES */
+@media (max-width: 480px) {
+
+    main {
+        padding: 25px 15px;
+    }
+
+    .top-banner img.banner-img {
+        width: 100%;
+        height: 60vh;
+        object-fit: cover;
+    }
+
+    .top-banner h4 {
+        bottom: 80px;
+        padding: 0 15px 8px;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    .flexible-btn {
+        bottom: 80px;
+        width: 95px;
+        height: 35px;
+        font-size: 0.85rem;
+    }
+
+    .middle-banner-1 h2,
+    .middle-banner-2 h2,
+    .middle-banner-3 h2 {
+        font-size: 1.35rem;
+    }
+
+    .middle-banner-1 h2 {
+        padding: 10px 0 25px;
+    }
+
+    .trip-inspo-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .card img {
+        height: 140px;
+    }
+
+    .card-info {
+        padding: 6px 7px;
+    }
+
+    .card-info p {
+        font-size: 0.75rem;
+    }
+
+    .middle-banner-2 {
+        margin-top: 35px;
+    }
+
+    .discovery-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .experience-card {
+        width: 100%;
+    }
+
+    .experience-card img {
+        width: 100%;
+        height: 450px;
+    }
+
+    .card-info-2 {
+        left: 25px;
+        bottom: 25px;
+    }
+
+    .card-info-2 h4 {
+        font-size: 1.4rem;
+    }
+
+    .card-info-2 button {
+        margin-top: 20px;
+    }
+
+    .logo1,
+    .logo2,
+    .logo3 {
+        position: static;
+        margin: 10px;
+    }
+
+    .gift-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .gift-card-img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .card-info-3 h2 {
+        font-size: 1.3rem;
+    }
+
+    .middle-banner-4 {
+        margin-top: 35px;
+    }
+
+    .questions-card img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+
+    .card-info-4 {
+        left: 25px;
+        bottom: 30px;
+        font-size: 1.2rem;
+    }
+
+    .card-info-4 h1 {
+        line-height: 1.2;
+    }
+
+    .ask-btn {
+        margin-top: 25px;
+        width: 120px;
+        height: 38px;
+    }
+
+    .bottom-banner {
+        padding-top: 30px;
+    }
+
+    .getaway-list ul {
+        gap: 5px 15px;
+    }
+
+    .getaway-list li {
+        padding: 20px 0 8px;
+        font-size: 0.75rem;
+    }
+
+    .tourist-attractions ul {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        padding-top: 25px;
+    }
+
+    footer {
+        padding: 30px 20px;
+        font-size: 0.8rem;
+    }
+
+    .footer-categories {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px 15px;
+    }
+
+    .copyright-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .footer-icons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .social-media-icons {
+        gap: 10px;
+    }
+}

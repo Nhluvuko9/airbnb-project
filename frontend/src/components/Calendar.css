@@ -1,8 +1,9 @@
 .calendar-dropdown {
   position: absolute;
   top: 135px;
-  right: 530px;
+  right: 30px;
   width: 235px;
+  max-width: calc(100vw - 30px);
   padding: 15px;
   background-color: white;
   border: none;
@@ -60,3 +61,53 @@
     color: white;
     cursor: pointer;
 }
+
+/* ================================= */
+/* CALENDAR RESPONSIVE */
+/* ================================= */
+
+/* TABLETS */
+@media (max-width: 768px) {
+
+    .calendar-dropdown {
+        top: 100px;
+        right: 20px;
+        width: 235px;
+    }
+
+    .calendar-day {
+        padding: 5px;
+        font-size: 0.8rem;
+    }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+
+    .calendar-dropdown {
+        top: 80px;
+        right: 15px;
+        width: 235px;
+        max-width: calc(100vw - 30px);
+        padding: 12px;
+    }
+
+    .calendar-dropdown h3 {
+        font-size: 1rem;
+    }
+
+    .calendar-weekdays {
+        font-size: 0.75rem;
+    }
+
+    .calendar-day {
+        padding: 4px;
+        font-size: 0.78rem;
+    }
+
+    .close-calendar {
+        font-size: 0.8rem;
+        padding: 5px 9px;
+    }
+}
+

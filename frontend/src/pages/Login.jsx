@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import HeaderLight from "../components/HeaderLight";
 
 export default function Login () {
+    // State variables for inputs and validation errors
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
    
+    // Handle form submission and validation
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage("");
@@ -29,8 +31,6 @@ export default function Login () {
         } catch (error) {
             setErrorMessage(error.message || 'Something went wrong.')
         }
-
-        console.log("Login form working: {username, password}")
     };
 
     return (
@@ -38,7 +38,10 @@ export default function Login () {
             <HeaderLight />
             <div className="login-card">
                 <h2>Welcome, to Airbnb!</h2>
+                {/* Display error message dynamically */}
                 <div className="error-banner">{errorMessage}</div>
+                
+                {/* User information inputs */}
                 <form onSubmit={handleSubmit} noValidate>
                     <div className="inputs">
                         <label htmlFor="username">Username</label>

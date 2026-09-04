@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { propertyService } from '../services/propertyService';
 import { useNavigate, useParams } from 'react-router-dom';
 import HeaderLight from '../components/HeaderLight';
+import './CreateListings.css';
 
 export default function UpdateListings() {
     const { id } = useParams();
     const navigate = useNavigate();
 
+    // State variables for form inputs
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [type, setType] = useState("");
@@ -16,9 +18,11 @@ export default function UpdateListings() {
     const [bathrooms, setBathrooms] = useState("");
     const [description, setDescription] = useState("");
 
+    // UI tracking states
     const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
+    // Fetch property details from database
     useEffect(() => {
         const fetchPropertyDetails = async () => {
             try {
@@ -42,6 +46,7 @@ export default function UpdateListings() {
         fetchPropertyDetails();
     }, [id]);
 
+    // Form resubmission with changes
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage("");
@@ -51,6 +56,7 @@ export default function UpdateListings() {
             return;
         }
 
+        // Load pre-filled form with all data inputs
         try {
             setIsLoading(true);
 
@@ -65,7 +71,7 @@ export default function UpdateListings() {
                 description: description.trim()
             };
             await propertyService.update(id, updatedDetails);
-            navigate('/dashboard');
+            navigate('/view-listings');
         } catch (error) {
             setErrorMessage(error.message || "Failed to update property details.");
             setIsLoading(false);
@@ -84,13 +90,30 @@ export default function UpdateListings() {
                     {isLoading ? (
                         <p>Loading existing details...</p>
                     ) : (
-                        <form onSubmit={handleSubmit} id="update-listing-form">
+                        <form onSubmit={handleSubmit} id="create-listing-form">
                             <div className="inputs">
-                                    <label htmlFor="title">Title</label>
-                                    <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                                <label htmlFor="title">Title</label>
+                                <input type="text" id="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
                             </div>
 
-                            <div className="inputs">
+                            <div className="price-type-inputs">
+                                <div className="inputs">
+                                        <label htmlFor="price">Price</label>
+                                        <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} required />
+                                </div>
+                                <div className="inputs">
+                                    <label htmlFor="type">Type</label>
+                                    <select value={type} onChange={(e) => setType(e.target.value)} placeholder="Select an option" required>
+                                        <option value="select">-- Select accomodation --</option>
+                                        <option value="House">House</option>
+                                        <option value="Apartment">Apartment</option>
+                                        <option value="Villa">Villa</option>
+                                        <option value="Room">Private room</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="inputs location">
                                 <label htmlFor="location">Location</label>
                                 <select value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Select an option" required>
                                     <option value="select">-- Select location --</option>
@@ -100,26 +123,6 @@ export default function UpdateListings() {
                                     <option value="Tokyo">Tokyo</option>
                                     <option value="Phuket">Phuket</option>
                                 </select>
-                            </div>
-
-                            <div className="inputs">
-                                <label htmlFor="type">Type</label>
-                                <select value={type} onChange={(e) => setType(e.target.value)} placeholder="Select an option" required>
-                                    <option value="select">-- Select accomodation --</option>
-                                    <option value="House">House</option>
-                                    <option value="Apartment">Apartment</option>
-                                    <option value="Villa">Villa</option>
-                                    <option value="Room">Private room</option>
-                                </select>
-                            </div>
-
-                            <div className="inputs">
-                                    <label htmlFor="type">Type</label>
-                                    <input type="text" id="type" value={type} onChange={(e) => setType(e.target.value)} required />
-                            </div>
-                            <div className="inputs">
-                                    <label htmlFor="price">Price</label>
-                                    <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} required />
                             </div>
 
                             <div className="form-num-inputs">
@@ -139,11 +142,11 @@ export default function UpdateListings() {
 
                             <div className="inputs">
                                     <label htmlFor="description">Description</label>
-                                    <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} required />
+                                    <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} rows="4" required ></textarea>
                             </div>
 
                             <div className="listing-btns">
-                                <button type="submit" id="save-btn" disabled={isLoading}>
+                                <button type="submit" id="create-btn" disabled={isLoading}>
                                     {isLoading ? "Saving..." : "Save Changes"}
                                 </button>
                             </div>

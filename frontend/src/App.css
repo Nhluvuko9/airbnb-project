@@ -36,7 +36,7 @@
   align-items: center;
   flex-direction: column;
   background-color: #ffff;
-  padding: 15px;
+  padding: 10px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   width: 500px;
@@ -132,22 +132,6 @@ input {
   max-width: 100%;
   margin: 0 auto;
   padding: 0 25px;
-}
-
-.property-card {
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.image-container {
-  width: 660px;
-  height: 440px;
-  object-fit: cover;
-}
-
-.card-details {
-  padding: 20px;
 }
 
 /* NOTIFICATION STYLES */

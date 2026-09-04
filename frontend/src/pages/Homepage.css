@@ -5,6 +5,7 @@
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Top banner */
 .top-banner {
 	background-color: black;
 	display: flex;
@@ -56,6 +57,7 @@ main {
 	font-size: 1.75rem;
 }
 
+/* Trip inspiration */
 .trip-inspo-cards {
 	display: flex;
 	flex-direction: row;
@@ -88,13 +90,17 @@ main {
 .card-info p {
 	font-size: 0.85rem;
 }
-
+.middle-banner-2 {
+	position: relative;
+	bottom: 40px;
+}
 .middle-banner-2 h2 {
 	font-size: 1.75rem;
 	position: relative;
-	bottom: -90px;
+	top: 110px;
 }
 
+/* Discovery */
 .discovery-cards {
 	display: flex;
 	flex-direction: row;
@@ -104,6 +110,7 @@ main {
 
 .experience-card {
 	gap: 15px;
+	position: relative;
 }
 .experience-card img {
 	width: 575px;
@@ -138,11 +145,12 @@ main {
 }
 .card-info-2 button:hover {
 	background-color: #ef386c;
-  color: white;
+  	color: white;
 }
 
+/* Learn more */
 .middle-banner-3 {
-	margin-top: 60px;
+	margin-top: 20px;
 }
 
 .middle-banner-3 h2 {
@@ -150,7 +158,7 @@ main {
 }
 
 .learn-more-btn {
-	margin-top: 25px;
+	margin: 25px 0 0 20px;
 	border: none;
 	border-radius: 6px;
 	font-weight: 500;
@@ -160,6 +168,7 @@ main {
 	background-color: black;
 }
 
+/* Logos */
 .logo1 {
 	position: relative;
 	z-index: 1000;
@@ -179,11 +188,15 @@ main {
 	left: 440px;
 }
 
+/* Gift cards */
 .gift-cards {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;	
+}
+.card-info-3 h2 {
+	line-height: 6px;
 }
 
 .gift-card-img {
@@ -195,6 +208,7 @@ main {
 	margin-top: -260px;
 }
 
+/* Questions */
 .questions-card {
 	display: flex;
 	flex-direction: column;
@@ -233,6 +247,7 @@ main {
   color: white;
 }
 
+/* Bottom banner */
 .bottom-banner {
 	display: flex;
 	flex-direction: column;
@@ -268,6 +283,7 @@ main {
 	list-style: none;
 }
 
+/* Footer */
 footer{
 	background-color: rgb(250, 249, 249);
 	padding: 40px;

@@ -4,6 +4,7 @@ export default function Calendar({ checkInDate, setCheckInDate, checkOutDate, se
     const emptyDays = 2; // Number of empty days before the first day of the month
     const daysInMonth = 30; // Number of days in the month
 
+    //  Ensuring checkIn and CheckOut dates are not on the same date
     const handleDateClick = (day) => {
         if (!checkInDate || (checkInDate && checkOutDate)) {
             setCheckInDate(day);
@@ -25,6 +26,7 @@ export default function Calendar({ checkInDate, setCheckInDate, checkOutDate, se
     ];
 
     return (
+        // Dropdwon calendar display
         <div className="calendar-dropdown">
             <h3>September 2026</h3>
             <div className="calendar-weekdays">

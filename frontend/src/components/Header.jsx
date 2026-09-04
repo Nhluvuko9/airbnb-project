@@ -10,6 +10,7 @@ export default function Header({ theme } ) {
     const [user, setUser] = useState();
     const dropdownRef = useRef(null);
 
+	// Read user data from localStorage
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
@@ -19,16 +20,9 @@ export default function Header({ theme } ) {
                 console.error("Parsing user data failed:", error);
             }
         }
+   }, []);
 
-        // const handleClickOutside = (event) => {
-        //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        //         setShowDropdown(false);
-        //     }
-        // };
-        // document.addEventListener('mouseover', handleClickOutside);
-        // return () => document.removeEventListener('mouseover', handleClickOutside);
-    }, []);
-
+    // Handle user loging out
     const handleLogout = () => {
         authService.logout();
         setUser(null);
@@ -36,12 +30,21 @@ export default function Header({ theme } ) {
         navigate('/login');
     };
 
-    const [location, setLocation] = useState("");
+    const [location] = useState("");
 
+    // Location city selector
+    const handleLocation = (e) => {
+        const selectedLocation = e.target.value;
+        if (selectedLocation === 'select') return;
+        navigate(`/locations?city=${encodeURIComponent(selectedLocation)}`);
+    }
+
+    // Calendar state variables
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const [checkInDate, setCheckInDate] = useState(null);
     const [checkOutDate, setCheckOutDate] = useState(null);
 
+    // Guest count state variables
     const [isOpen, setIsOpen] = useState("");
     const [guestCount, setGuestCount] = useState({
         adults: 0,
@@ -54,16 +57,18 @@ export default function Header({ theme } ) {
 
             if (count === "minus" && type === "adults" && current <= 1) return prev;
             if (count === "minus" && current <= 0) return prev;
+			if (count === "plus" && current > 0) return totalGuests;
 
             return {
-                ...prev,
                 [type]: count === "plus" ? current + 1 : current - 1
             };
         })
     }
 
+    // Guest count
     const totalGuests = guestCount.adults + guestCount.children;
 
+    // Header LIGHT or DARK theme
     const [isHomepage, setIsHomepage] = useState(window.location.pathname === '/homepage');
     const [setTheme] = useState(isHomepage ? "dark" : "light");
     const headerBgColor = theme === "light" ? "white" : "black";
@@ -72,22 +77,29 @@ export default function Header({ theme } ) {
     return (
         <div className="header-container" onLoad={setIsHomepage && setTheme} style={{backgroundColor: headerBgColor}}>
             <header className="top-header">
-                <div className="app-logo">
-                        <img src="/assets/airbnb-logo.jpg" alt="Airbnb logo"/>
-                </div>
+                {/* Logos for light and dark theme */}
+				<div className="app-logo">
+					{!isHomepage ? (
+						<img src="/assets/airbnb-logo.jpg" alt="Airbnb logo"/>
+                    ) : (
+                        <img src="/assets/airbnb-pink-logo.jpg" alt="Airbnb logo" style={{width: '120px', height: '50px'}}/>
+                    )}
+				</div>
         
                 <div className="booking-details">
+                    {isHomepage ? (
                         <ul>
                             <li>Places to stay</li>
                             <li>Experiences</li>
                             <li>Online experiences</li>
                         </ul>
-                    {/* {!isHomepage && (
-                    )} */}
+                    ) : (
+                        ""
+                    )}
                 </div>
         
                 <nav className="nav-links">
-                    {user && (user.role === 'host' || user.role === 'admin') && (
+                    {user ? (user.role === 'host' || user.role === 'admin') : (
                         <div className="become-a-host">
                             <Link to="/create-listing" style={{color: theme === "light" ? "black" : "white", textDecoration: 'none'}}>Become a Host</Link>
                         </div>
@@ -103,7 +115,7 @@ export default function Header({ theme } ) {
                             <Link to="/login" style={{color: '#aaaaaa', padding: '2.5px 0 0 4.5px'}}>
                                 <i className="material-icons">account_circle</i>
                             </Link>
-                            {!showDropdown && (
+                            {showDropdown && (
                                 <div className="dropdown-menu">
                                     {!user ? (
                                         <>
@@ -120,33 +132,15 @@ export default function Header({ theme } ) {
                                 </div>
                             )}
                         </div>
-
-
-                        {/* {user ? (
-                                <div className="user-menu" style={{color: theme === "light" ? "black" : "white"}}>
-                                    <span>Hello, {user.username} ({user.role})</span>
-
-                                    {(user.role === "host" || user.role === "admin") && (
-                                        <div className="become-a-host">
-                                            <Link to="/create-listing" style={{color: theme === "light" ? "black" : "white", textDecoration: 'none'}}>Become a Host</Link>
-                                        </div>
-                                    )}
-                                    <button onClick={handleLogout} className="logout-btn">Logout</button>
-                                </div>
-                        ) : (
-                            <div className="user-info">
-                                <i className="material-icons" style={{color: 'black'}}>dehaze</i>
-                                <Link to="/login" style={{color: '#aaaaaa', padding: '2.5px 0 0 4.5px'}}><i className="material-icons">account_circle</i></Link>
-                            </div>
-                        )} */}
                 </nav>
             </header>
 
             <div className="bottom-header">
+                {/* Search bar/ Selector  */}
                 <form>
                     <div className="location-options">
                         <label>Location</label>
-                        <select value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Select a location" required>
+                        <select value={location} onChange={handleLocation} placeholder="Select a location" required>
                             <option value="select">Select a location</option>
                             <option value="all">All Locations</option>
                             <option value="New York">New York</option>
@@ -186,7 +180,7 @@ export default function Header({ theme } ) {
                         <div className="guest-trigger" onClick={() => setIsOpen(!isOpen)}>
                             <label>Guests</label>
                             <div className="guest-total" style={{fontSize: '0.8rem'}}>
-                                {totalGuests} {totalGuests === 1 ? "guest" : "guests" }
+                                {totalGuests === 1 ? `${totalGuests} guest` : `${totalGuests} guests` }
                             </div>
                         </div>
 
@@ -197,7 +191,7 @@ export default function Header({ theme } ) {
                                     <div className="count-selector">
                                         <button onClick={() => updateCount("adults", "minus")}>-</button>
                                         <span>{guestCount.adults}</span>
-                                        <button onClick={() => updateCount("adults", "plus")}>+</button>
+                                        <button onClickCapture={() => updateCount("adults", "plus")}>+</button>
                                     </div>
                                 </div>
                                 <div className="selector">

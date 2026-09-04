@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 450px;
-  padding: 35px;
+  padding-bottom: 35px;
 }
 
 .form-card {
@@ -16,7 +16,8 @@
 #create-listing-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 830px;
+  width: 100%;
+  max-width: 830px;
   gap: 20px;
   row-gap: 3px;
 }
@@ -92,10 +93,6 @@
   cursor: pointer;
 }
 
-/* .image-upload-box {
-  display: none;
-} */
-
 .amenities {
   display: flex;
   flex-direction: row;
@@ -127,6 +124,7 @@
   border: none;
   border-radius: 8px;
   font-size: 0.87rem;
+  cursor: pointer;
 }
 #cancel-btn {
   width: 120px;
@@ -136,4 +134,170 @@
   border: none;
   border-radius: 8px;
   font-size: 0.87rem;
+}
+
+/* ================================= */
+/* CREATE LISTINGS - RESPONSIVE */
+/* ================================= */
+
+
+/* TABLETS / SMALL LAPTOPS */
+@media (max-width: 768px) {
+
+    .listings-container {
+        width: 100%;
+        padding: 20px;
+        padding-bottom: 35px;
+    }
+
+    .form-card {
+        width: 100%;
+        max-width: 700px;
+    }
+
+    #create-listing-form {
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .form-card h2 {
+        font-size: 1.4rem;
+    }
+
+    .price-type-inputs {
+        gap: 10px;
+    }
+
+    .price-type-inputs .inputs {
+        width: 100%;
+    }
+
+    .form-num-inputs {
+        gap: 10px;
+    }
+
+    .form-num-inputs .inputs {
+        width: 100%;
+    }
+
+    .amenities {
+        gap: 8px;
+    }
+
+    .amenities input {
+        width: 100%;
+    }
+
+    .listing-btns {
+        margin-top: 40px;
+    }
+}
+
+/* PHONES */
+@media (max-width: 480px) {
+
+    .listings-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        min-height: auto;
+        padding: 20px 15px 35px;
+    }
+
+    .form-card {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .form-card h2 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    #create-listing-form {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 10px;
+    }
+
+    #create-listing-form .inputs {
+        width: 100%;
+    }
+
+    #create-listing-form .inputs label {
+        font-size: 0.85rem;
+        margin-top: 20px;
+    }
+
+    .form-num-inputs {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .form-num-inputs .inputs {
+        width: 100%;
+    }
+
+    .price-type-inputs {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .price-type-inputs .inputs {
+        width: 100%;
+    }
+
+    .price-type-inputs select,
+    .location select {
+        width: 100%;
+    }
+
+    .amenities {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .amenities input {
+        width: 100%;
+    }
+
+    .amenities-btn {
+        flex-shrink: 0;
+        width: 65px;
+    }
+
+    .image-upload label {
+        margin-top: 25px;
+    }
+
+    .image-upload label .image-upload-box {
+        width: 100%;
+        height: 80px;
+    }
+
+    .add-img-btn {
+        width: 110px;
+    }
+
+    .listing-btns {
+        display: flex;
+        justify-content: center;
+        margin-top: 35px;
+        gap: 10px;
+    }
+
+    #create-btn,
+    #cancel-btn {
+        width: 110px;
+        height: 40px;
+    }
 }

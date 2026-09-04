@@ -1,0 +1,121 @@
+.locations-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgb(209, 207, 207);
+    width: 100%;
+}
+.all-locations-list {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 8px;
+    box-shadow: 0 1px 8px rgba(168, 168, 168, 0.5);
+    width: 100%;
+    max-width: 800px;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.listing-card {
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    width: 800px;
+}
+
+img{
+    height: 165px;
+    width: 165px;
+    border-radius: 12px;
+}
+
+.card-info2 {
+    padding: 0 20px;
+}
+
+.card-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px 16px;
+    width: 500px;
+}
+
+/* ================================= */
+/* LOCATION RESPONSIVE */
+/* ================================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+
+    .locations-container {
+        padding: 20px 15px;
+    }
+
+    .all-locations-list {
+        grid-template-columns: 150px 1fr;
+        width: 100%;
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .listing-card {
+        grid-template-columns: 150px 1fr;
+    }
+
+    .locations-container img {
+        width: 140px;
+        height: 140px;
+    }
+
+    .card-info2 {
+        padding: 0 15px;
+    }
+
+    .card-footer {
+        padding: 10px;
+    }
+}
+
+/* Phone */
+@media (max-width: 480px) {
+
+    .locations-container {
+        padding: 15px 10px;
+    }
+
+    .all-locations-list {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .listing-card {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .locations-container img {
+        width: 100%;
+        max-width: 250px;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-info2 {
+        width: 100%;
+        padding: 15px 5px 5px;
+    }
+
+    .card-footer {
+        width: 100%;
+        padding: 10px 5px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}

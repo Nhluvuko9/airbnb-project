@@ -4,6 +4,7 @@ export default function Homepage() {
 
     return (
         <div className="homepage-container">
+            {/* Hero banner */}
             <div className="top-banner">
                 <img src="/assets/top-banner-bg.jpg" alt="Banner image" className="banner-img"/>
                 <h4>Not sure where to go? Perfect.</h4>
@@ -11,6 +12,7 @@ export default function Homepage() {
             </div>
 
             <main>
+                {/* Insipration cards */}
                 <div className="middle-banner-1">
                     <h2>Inspiration for your next trip</h2>
                     <div className="trip-inspo-cards">
@@ -53,6 +55,7 @@ export default function Homepage() {
 
                 </div>
 
+                {/* Discovery section */}
                 <div className="middle-banner-2">
                     <h2>Discover Airbnb Experiences</h2>
                     <div className="discovery-cards">
@@ -75,6 +78,7 @@ export default function Homepage() {
                     </div>
                 </div>
 
+                {/* Gift cards */}
                 <div className="middle-banner-3">
                     <div className="gift-cards">
                         <div className="card-info-3">
@@ -100,6 +104,7 @@ export default function Homepage() {
                     </div>
                 </div>
 
+                {/* Questions */}
                 <div className="middle-banner-4">
                     <div className="questions-card">
                         <div className="card-info-4">
@@ -112,6 +117,7 @@ export default function Homepage() {
                     </div>
                 </div>
 
+                {/* Bottom banner with getaways and tourist attractions */}
                 <div className="bottom-banner">
                     <h3>Inspiration for future getaways</h3>
                     <div className="getaway-list">
@@ -179,6 +185,7 @@ export default function Homepage() {
                 </div>
             </main>
 
+            {/* Static footer */}
             <footer>
                 <div className="footer-categories">
                     <div className="support">
@@ -227,13 +234,14 @@ export default function Homepage() {
                     </div>
                 </div>
 
+                {/* Copyright and social media icons */}
                 <div className="copyright-section">
                     <div className="privacy-terms">
                         <p>© 2026 Airbnb Clone - Privacy - Terms - Sitemap</p>
                     </div>
 
                     <div className="footer-icons">
-                        <i class="material-icons">language</i>
+                        <i className="material-icons">language</i>
                         <select className="language-select"><option>English</option></select>
                         <select className="currency-select"><option>USD</option></select>
                         <div className="social-media-icons">

@@ -7,6 +7,7 @@ import HeaderLight from '../components/HeaderLight';
 export default function CreateListings() {
     const navigate = useNavigate();
 
+    // State variables for form inputs
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [type, setType] = useState("");
@@ -19,6 +20,7 @@ export default function CreateListings() {
     const [amenityInput, setAmenityInput] = useState("");
     const [amenititesList, setAmenitiesList] = useState([]);
 
+    // UI tracking states
     const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState("");
 
@@ -26,6 +28,7 @@ export default function CreateListings() {
         e.preventDefault();
         setErrorMessage("")
 
+        // Strict validation layers
         if (Number(price) <= 0 || Number(guests) <= 0) {
             setErrorMessage("Price and guest count must be equal to or greater than 1");
             return;
@@ -38,6 +41,7 @@ export default function CreateListings() {
 
         setIsLoading(true);
 
+        // Data payload
         const formDataPayload = new FormData();
         formDataPayload.append('title', title.trim());
         formDataPayload.append('location', location.trim());
@@ -48,26 +52,16 @@ export default function CreateListings() {
         formDataPayload.append('bathrooms', Number(bathrooms));
         formDataPayload.append('description', description.trim());
 
+        // Requests to node backend
         if (imageFile) {
             formDataPayload.append('image', imageFile);
         } 
         try {
             await propertyService.create(formDataPayload);
-            navigate('/dashboard');
+            navigate('/view-listings');
         } catch (error) {
-            setErrorMessage(error.message || "Network error")
+            setErrorMessage(error.message || "Network error");
         }
-
-        // const listingdetails = { title: title.trim(), location, type, price: Number(price), guests: Number(guests), bedrooms: Number(bedrooms), bathrooms: Number(bathrooms), description: description.trim() };
-        // try {
-        //     await propertyService.create(listingdetails);
-        //     navigate('/dashboard');
-        // } catch (error) {
-        //     setErrorMessage(error.message || "Networ error.");
-        // } finally {
-        //     setIsLoading(false);
-        // }
-
     }; 
 
     const handleFileChange = (e) => {
@@ -155,10 +149,10 @@ export default function CreateListings() {
                             <label htmlFor="upload-box">
                                 <div className="add-image">
                                     <button className="add-img-btn">
-                                        {imageFile ? `selected: ${imageFile.name}` : 'Upload Images'}
+                                        Upload Image
                                     </button>
                                 </div>
-                                <input type="file" className="image-upload-box" accept="image/*" onChange={handleFileChange} require />
+                                <input type="file" className="image-upload-box" accept="image/*" onChange={handleFileChange} />
                             </label>
                         </div>
    
@@ -172,6 +166,7 @@ export default function CreateListings() {
                  
                         <div className="listing-btns">
                             <button type="submit" id="create-btn">{isLoading ? "Processing listing" : "Create listing"}</button>
+                            <button type="submit" id="cancel-btn">Cancel</button>
                         </div>
             
                     </form>
