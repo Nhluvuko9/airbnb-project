@@ -23,7 +23,7 @@ const createProperty = async (req, res) => {
             console.log("File upload middleware error:", err);
             return res.status(500).json({ message: "File processing error." });
         }
-
+        // Unpack all fields sent fron frontend form
         try {
             console.log("Incoming text fields:", req.body);
             console.log("Incoming File data:", req.file);

@@ -1,18 +1,22 @@
+// MAIN RUNTIME ENGINE //
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
+// Initialize environmental (.env) variables
 dotenv.config();
 console.log("Port value is:", process.env.PORT);
 console.log("URI exist?", process.env.MONGODB_URI? "Yes" : "NO");
 
 const app = express();
 
-//Middleware
+//Security Middleware
 app.use(cors());
 app.use(express.json());
+// File static images saved in local directory
 app.use('/uploads', express.static('uploads'));
+// Central routing maps
 app.use('/api/auth', require('./routes/userRoutes'));
 app.use('/api/properties', require('./routes/propertyRoutes'));
 
@@ -21,6 +25,7 @@ app.get('/', (req, res) => {
   res.send('Server running smoothly!')
 })
 
+// DATABASE LAYER HOOK
 // Connecting to MongoDB 
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {

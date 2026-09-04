@@ -37,7 +37,7 @@ const registerUser = async (req, res) => {
 };
 ;
 
-// Authenticating user
+// Authenticating user and get token
 const loginUser = async (req, res) => {
     try {
         const username = req.body.username;
