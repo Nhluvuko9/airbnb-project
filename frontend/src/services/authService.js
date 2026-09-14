@@ -5,14 +5,21 @@ export const authService = {
     login: async (username, password) => {
         const feedback = await fetch(`${API_URL}/login`, {
             method: 'POST',
-            headers: { 'Content-type' : 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password }),
         });
 
-        const data = await feedback.json();
         if (!feedback.ok) {
-            throw new Error(data.message || "Login failed.");
+            const errorMessage = "Login Failed";
+            try {
+                const errorData = await feedback.json();
+                errorData.message || errorMessage;
+            } catch {
+                throw new Error(errorMessage);
+            }
         }
+
+        const data = await feedback.json();
 
         // Save token and user details
         if (data.token) {

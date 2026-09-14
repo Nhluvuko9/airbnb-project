@@ -1,5 +1,4 @@
 // PROPERTY API TRANSIT ENGINE//
-
 const API_URL = 'http://localhost:5000/api/properties';
 
 export const propertyService = {
