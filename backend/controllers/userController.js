@@ -24,7 +24,7 @@ const registerUser = async (req, res) => {
         res.status(201).json({ 
             message: 'User successfully registered!', 
             user: {
-                id: newUser.id,
+                id: newUser._id,
                 username: newUser.username,
                 role: newUser.role
             } 
@@ -35,7 +35,7 @@ const registerUser = async (req, res) => {
         res.status(500).json({ message: 'Error registering user' })
     }
 };
-;
+
 
 // Authenticating user and get token
 const loginUser = async (req, res) => {
@@ -58,7 +58,7 @@ const loginUser = async (req, res) => {
         // JWT security token
         const token = jwt.sign(
             {
-                id: user.id,
+                id: user._id,
                 role: user.role
             },
             process.env.JWT_SECRET,
@@ -70,7 +70,7 @@ const loginUser = async (req, res) => {
             message: 'Login was successful!',
             token, 
             user: {
-                id: user.id,
+                id: user._id,
                 username: user.username,
                 role: user.role
             } 
