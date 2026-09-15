@@ -1,6 +1,6 @@
 // PROPERTY API TRANSIT ENGINE//
 
-const API_URL = 'http://localhost:5000/api/properties';
+const API_URL = 'https://airbnb-capstoneproject-backend.onrender.com';
 
 export const propertyService = {
 
