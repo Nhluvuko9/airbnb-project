@@ -11,7 +11,7 @@ export default function ViewReservations () {
         const fetchReservations = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const feedback = await fetch('http://localhost:5000/api/reservations/user', {
+                const feedback = await fetch('https://airbnb-capstoneproject-backend.onrender.com', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
