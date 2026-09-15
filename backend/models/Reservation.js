@@ -6,8 +6,9 @@ const ReservationSchema = new mongoose.Schema ({
         required: true,
     },
     propertyName: { type: String, required: true },
-    checkInDate: { type: Number, required: true },
-    checkOutDate: { type: Number, required: true }
+    checkInDate: { type: Date, required: true },
+    checkOutDate: { type: Date, required: true },
+    guests: { type: Number, required: true, min: 1 }
 
 }, { timestamps: true });
 

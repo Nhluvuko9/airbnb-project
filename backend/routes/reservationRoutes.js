@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const { createReservation, getReservationByUser, getReservationByHost, deleteReservation } = require('../controllers/reservationController');
+const { protect, authorize } = require('../middleware/auth');
 
-// Route for reservation (POST) 
-router.post('/view-reservations', createReservation);
+// Create a reservation
+router.post('/', protect, createReservation);
 
 // Route mapping for fetching a Reservation (GET)
-router.get('/user', getReservationByUser);
-router.get('/host', getReservationByHost);
+router.get('/user', protect, getReservationByUser);
+router.get('/host', protect, authorize('host', 'admin'), getReservationByHost);
 
 // Route mapping for deleting a Reservation (DELETE)
-router.delete('/:id', deleteReservation);
+router.delete('/:id', protect, deleteReservation);
 
 module.exports = router;

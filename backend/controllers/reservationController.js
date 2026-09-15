@@ -4,22 +4,40 @@ const User = require('../models/User');
 // CREATE a new reservation
 const createReservation = async(req, res) => {
     try {
-        const username = req.body.bookedBy;
-        const checkInDate = req.body.checkInDate;
-        const checkOutDate = req.body.checkOutDate;
-        const propertyName = req.body.propertyName;
+        const { checkInDate, checkOutDate, propertyName, guests } = req.body;
 
-        const user = await User.findOne({ username });
+        if (!checkInDate || !checkOutDate || !propertyName || !guests) {
+            return res.status(400).json({ message: 'Property, dates, and guests are required.' });
+        }
+
+        const guestCount = Number(guests);
+        if (!Number.isInteger(guestCount) || guestCount < 1) {
+            return res.status(400).json({ message: 'Guests must be a positive whole number.' });
+        }
+
+        const parsedCheckIn = new Date(checkInDate);
+        const parsedCheckOut = new Date(checkOutDate);
+
+        if (Number.isNaN(parsedCheckIn.getTime()) || Number.isNaN(parsedCheckOut.getTime())) {
+            return res.status(400).json({ message: 'Invalid reservation dates.' });
+        }
+
+        if (parsedCheckOut <= parsedCheckIn) {
+            return res.status(400).json({ message: 'Check-out must be after check-in.' });
+        }
+
+        const user = await User.findById(req.user.id);
 
         if (!user) {
-            return res.status(400).json({ message: 'User/Host not found.' })
+            return res.status(404).json({ message: 'User not found.' })
         }
 
         const newReservation = new Reservation({
             user: user._id,
             propertyName,
-            checkInDate: new Date(checkInDate),
-            checkOutDate: new Date(checkOutDate)
+            checkInDate: parsedCheckIn,
+            checkOutDate: parsedCheckOut,
+            guests: guestCount
         });
 
         await newReservation.save();
@@ -33,9 +51,9 @@ const createReservation = async(req, res) => {
 // GET reservations by user
 const getReservationByUser = async (req, res) => {
     try {
-        const { userId } = req.user._id;
+        const userId = req.user.id;
 
-        const reservations = await Reservation.find({ user: userId })
+        const reservations = await Reservation.find({ user: userId }).populate('user', 'username');
         res.status(200).json(reservations);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -56,9 +74,12 @@ const getReservationByHost = async (req, res) => {
 const deleteReservation = async (req, res) => {
     try {
         const { id } = req.params;
-        
-        const deletedProperty = await Reservation.findByIdAndDelete(id); 
-        if (!deletedProperty) {
+
+        const deletedReservation = await Reservation.findOneAndDelete({
+            _id: id,
+            user: req.user.id
+        });
+        if (!deletedReservation) {
             return res.status(404).json({ message: 'Reservation not found.' });
         }
         

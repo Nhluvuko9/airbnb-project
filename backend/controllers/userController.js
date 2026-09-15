@@ -7,7 +7,7 @@ const registerUser = async (req, res) => {
     try {
         const username = req.body.username;
         const password = req.body.password;
-        const role = req.body.role;
+        const role = req.body.role === 'host' ? 'host' : 'guest';
     
         // Checking if user already exists
         const userExists = await User.findOne({ username });
