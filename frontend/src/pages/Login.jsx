@@ -24,7 +24,7 @@ export default function Login () {
             setErrorMessage("Password must be at least 8 characters long.");
             return;
         }
-
+        
         try {
             await authService.login(username, password);
             navigate('/homepage');

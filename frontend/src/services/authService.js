@@ -1,4 +1,4 @@
-const API_URL = 'https://airbnb-project-backend-dal9.onrender.com/';
+const API_URL = 'http://localhost:5000/api/auth';
 
 export const authService = {
     // Send login credentials to backend
@@ -9,17 +9,11 @@ export const authService = {
             body: JSON.stringify({ username, password }),
         });
 
-        if (!feedback.ok) {
-            const errorMessage = "Login Failed";
-            try {
-                const errorData = await feedback.json();
-                errorData.message || errorMessage;
-            } catch {
-                throw new Error(errorMessage);
-            }
-        }
-
         const data = await feedback.json();
+
+        if (!feedback.ok) {
+            throw new Error(data.message || 'Login failed');
+        }
 
         // Save token and user details
         if (data.token) {
@@ -33,5 +27,24 @@ export const authService = {
     logout: () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+    },
+
+    getCurrentUser: () => {
+        const storedUser = localStorage.getItem('user');
+        if (!storedUser) return null;
+
+        try {
+            return JSON.parse(storedUser);
+        } catch {
+            authService.logout();
+            return null;
+        }
+    },
+
+    isAuthenticated: () => Boolean(localStorage.getItem('token')),
+
+    hasRole: (...roles) => {
+        const user = authService.getCurrentUser();
+        return Boolean(user && roles.includes(user.role));
     }
 };

@@ -17,6 +17,7 @@ export default function UpdateListings() {
     const [bedrooms, setBedrooms] = useState("");
     const [bathrooms, setBathrooms] = useState("");
     const [description, setDescription] = useState("");
+    const [setImageFile] = useState(null);
 
     // UI tracking states
     const [errorMessage, setErrorMessage] = useState("");
@@ -46,6 +47,13 @@ export default function UpdateListings() {
         fetchPropertyDetails();
     }, [id]);
 
+    const handleFileChange = (e) => {
+        const selectedFile = e.target.files[0];
+        if (selectedFile) {
+            setImageFile(selectedFile);
+        }
+    };
+
     // Form resubmission with changes
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -68,7 +76,7 @@ export default function UpdateListings() {
                 guests: Number(guests),
                 bedrooms: Number(bedrooms),
                 bathrooms: Number(bathrooms),
-                description: description.trim()
+                description: description.trim(),
             };
             await propertyService.update(id, updatedDetails);
             navigate('/view-listings');
@@ -143,6 +151,17 @@ export default function UpdateListings() {
                             <div className="inputs">
                                     <label htmlFor="description">Description</label>
                                     <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} rows="4" required ></textarea>
+                            </div>
+
+                            <div className="image-upload">
+                                <label htmlFor="upload-box">
+                                    <div className="add-image">
+                                        <button className="add-img-btn">
+                                            Upload Image
+                                        </button>
+                                    </div>
+                                    <input type="file" className="image-upload-box" accept="image/*" onChange={handleFileChange} multiple/>
+                                </label>
                             </div>
 
                             <div className="listing-btns">

@@ -7,20 +7,9 @@ import './Header.css';
 export default function Header({ theme } ) {
     const navigate = useNavigate();
     const [showDropdown, setShowDropdown] = useState(false);
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(() => authService.getCurrentUser());
     const dropdownRef = useRef(null);
-
-	// Read user data from localStorage
-    useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            try {
-                return JSON.parse(storedUser);
-            } catch (error) {
-                console.error("Parsing user data failed:", error);
-            }
-        }
-   }, []);
+    const guestOptionsRef = useRef(null);
 
     // Handle user loging out
     const handleLogout = () => {
@@ -51,57 +40,57 @@ export default function Header({ theme } ) {
         children: 0
     });
 
-    const updateCount = (type, count) => {
-        setGuestCount(prev => {
-            const current = prev[type];
+    useEffect(() => {
+        const handleOutsideClick = (event) => {
+            if (guestOptionsRef.current && !guestOptionsRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
 
-            if (count === "minus" && type === "adults" && current <= 1) return prev;
-            if (count === "minus" && current <= 0) return prev;
-			if (count === "plus" && current > 0) return totalGuests;
+        document.addEventListener('mousedown', handleOutsideClick);
+        return () => document.removeEventListener('mousedown', handleOutsideClick);
+    }, []);
 
-            return {
-                [type]: count === "plus" ? current + 1 : current - 1
-            };
-        })
-    }
+    const updateCount = (type, action) => {
+        setGuestCount((currentGuests) => ({
+            ...currentGuests,
+            [type]: Math.max(0, currentGuests[type] + (action === "plus" ? 1 : -1))
+        }));
+    };
 
     // Guest count
     const totalGuests = guestCount.adults + guestCount.children;
 
     // Header LIGHT or DARK theme
-    const [isHomepage, setIsHomepage] = useState(window.location.pathname === '/homepage');
-    const [setTheme] = useState(isHomepage ? "dark" : "light");
     const headerBgColor = theme === "light" ? "white" : "black";
 
-    console.log("Header read user data", localStorage.getItem('user'))
+    console.log("Header read user data", user)
+    console.log("Header user data", authService.getCurrentUser());
+
     return (
-        <div className="header-container" onLoad={setIsHomepage && setTheme} style={{backgroundColor: headerBgColor}}>
+        <div className="header-container" style={{backgroundColor: headerBgColor}}>
             <header className="top-header">
                 {/* Logos for light and dark theme */}
 				<div className="app-logo">
-					{!isHomepage ? (
-						<img src="/assets/airbnb-logo.jpg" alt="Airbnb logo"/>
-                    ) : (
-                        <img src="/assets/airbnb-pink-logo.jpg" alt="Airbnb logo" style={{width: '120px', height: '50px'}}/>
-                    )}
+                    <img src="/assets/airbnb-logo.jpg" alt="Airbnb logo" />
 				</div>
         
-                <div className="booking-details">
-                    {isHomepage ? (
-                        <ul>
-                            <li>Places to stay</li>
-                            <li>Experiences</li>
-                            <li>Online experiences</li>
-                        </ul>
-                    ) : (
-                        ""
-                    )}
+                <div className="booking-details" theme="light">
+                    <ul>
+                        <li>Places to stay</li>
+                        <li>Experiences</li>
+                        <li>Online experiences</li>
+                    </ul>
                 </div>
         
                 <nav className="nav-links">
-                    {user ? (user.role === 'host' || user.role === 'admin') : (
+                    {user && (user.role === 'host' || user.role === 'admin') ? (
                         <div className="become-a-host">
-                            <Link to="/create-listing" style={{color: theme === "light" ? "black" : "white", textDecoration: 'none'}}>Become a Host</Link>
+                            <Link to="/view-listings" style={{color: 'white', textDecoration: 'none'}}>Welcome, {user.username}</Link>
+                        </div>
+                    ) : (
+                        <div className="become-a-host">
+                            <Link to="/login" style={{color: 'white', textDecoration: 'none'}}>Become a Host</Link>
                         </div>
                     )}
                         <div className="header-icon">
@@ -112,12 +101,14 @@ export default function Header({ theme } ) {
                             <button onClick={() => setShowDropdown(!showDropdown)} className="menu-trigger"> 
                                 <i className="material-icons" style={{color: 'black'}}>dehaze</i>
                             </button> 
-                            <Link to="/login" style={{color: '#aaaaaa', padding: '2.5px 0 0 4.5px'}}>
-                                <i className="material-icons">account_circle</i>
-                            </Link>
+                            <button onClick={() => setShowDropdown(!showDropdown)} className="menu-trigger">
+                                <Link to="/login" style={{color: '#aaaaaa', padding: '2.5px 0 0 4.5px'}}>
+                                    <i className="material-icons">account_circle</i>
+                                </Link>
+                            </button>
                             {showDropdown && (
                                 <div className="dropdown-menu">
-                                    {!user ? (
+                                    {user ? (
                                         <>
                                         <button onClick={() => navigate('/dashboard')} className="reservation">
                                             View Reservations
@@ -125,9 +116,7 @@ export default function Header({ theme } ) {
                                         <button onClick={handleLogout} className="logout-btn">Logout</button>
                                         </>
                                     ) : (
-                                        <Link to="/login" style={{color: '#aaaaaa', padding: '2.5px 0 0 4.5px'}}>
-                                            <i className="material-icons">account_circle</i>
-                                        </Link>
+                                        <button onClick={() => navigate('/login')} className="reservation">Login</button>
                                     )}
                                 </div>
                             )}
@@ -176,7 +165,7 @@ export default function Header({ theme } ) {
                         )}
                     </div>
                 
-                    <div className="guest-options">
+                    <div className="guest-options" ref={guestOptionsRef}>
                         <div className="guest-trigger" onClick={() => setIsOpen(!isOpen)}>
                             <label>Guests</label>
                             <div className="guest-total" style={{fontSize: '0.8rem'}}>
@@ -189,17 +178,17 @@ export default function Header({ theme } ) {
                                 <div className="selector">
                                     <p>Adults</p>
                                     <div className="count-selector">
-                                        <button onClick={() => updateCount("adults", "minus")}>-</button>
+                                        <button type="button" onClick={() => updateCount("adults", "minus")}>-</button>
                                         <span>{guestCount.adults}</span>
-                                        <button onClickCapture={() => updateCount("adults", "plus")}>+</button>
+                                        <button type="button" onClick={() => updateCount("adults", "plus")}>+</button>
                                     </div>
                                 </div>
                                 <div className="selector">
                                     <p>Children</p>
                                     <div className="count-selector">
-                                        <button onClick={() => updateCount("children", "minus")}>-</button>
+                                        <button type="button" onClick={() => updateCount("children", "minus")}>-</button>
                                         <span>{guestCount.children}</span>
-                                        <button onClick={() => updateCount("children", "plus")}>+</button>
+                                        <button type="button" onClick={() => updateCount("children", "plus")}>+</button>
                                     </div>
                                 </div>
                             </div>

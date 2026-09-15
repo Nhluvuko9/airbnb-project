@@ -58,7 +58,7 @@ export default function CreateListings() {
         } 
         try {
             await propertyService.create(formDataPayload);
-            navigate('/view-listings');
+            navigate('/dashboard');
         } catch (error) {
             setErrorMessage(error.message || "Network error");
         }
@@ -152,7 +152,7 @@ export default function CreateListings() {
                                         Upload Image
                                     </button>
                                 </div>
-                                <input type="file" className="image-upload-box" accept="image/*" onChange={handleFileChange} />
+                                <input type="file" className="image-upload-box" accept="image/*" onChange={handleFileChange} required/>
                             </label>
                         </div>
    

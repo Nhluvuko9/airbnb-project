@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import { propertyService } from '../services/propertyService';
+import Header2 from '../components/Header2';
 import './Locations.css';
 
 export default function Locations () {
@@ -23,6 +24,11 @@ export default function Locations () {
         marketplaceData();
     }, []);
 
+    // window.onload = async () => {
+    //     const data = await response.json();
+    //     const feedback = await fetch('/api/properties');       
+    // }
+
     // Filter locations to display
     const filteredListings = targetCity ==='all'
         ? allListings
@@ -30,6 +36,7 @@ export default function Locations () {
 
     return (
         <div>
+            <Header2 />
             <div className="locations-container">
                 <h2 style={{padding: '8px', fontSize: '1.60rem'}}>
                     {filteredListings.length} {filteredListings === 1 ? 'stay' : 'stays'} in {targetCity === 'all' ? 'all locations' : targetCity}
@@ -53,12 +60,14 @@ export default function Locations () {
         
                                 <div className="card-footer" >
                                     <span style={{color: 'grey', fontSize: '0.85rem'}}>⭐️ {property.rating || '4.5'} ({property.reviewsCount || '280 reviews'})</span>
-                                    <span style={{color: 'grey', fontSize: '1rem'}}>$ {property.price}/night</span>
+                                    <span style={{color: 'black', fontSize: '1.1rem'}}><strong>$ {property.price}</strong>/<span style={{fontSize: '0.87rem'}}>night</span></span>
+
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
+
             </div>
         </div>
     );

@@ -1,8 +1,10 @@
 import './Calendar.css';
 
 export default function Calendar({ checkInDate, setCheckInDate, checkOutDate, setCheckOutDate, onClose }) {
-    const emptyDays = 2; // Number of empty days before the first day of the month
-    const daysInMonth = 30; // Number of days in the month
+    // Number of empty days before the first day of the month
+    const emptyDays = 2; 
+    // Number of days in the month
+    const daysInMonth = 30; 
 
     //  Ensuring checkIn and CheckOut dates are not on the same date
     const handleDateClick = (day) => {
@@ -26,7 +28,7 @@ export default function Calendar({ checkInDate, setCheckInDate, checkOutDate, se
     ];
 
     return (
-        // Dropdwon calendar display
+        // Dropdown calendar display
         <div className="calendar-dropdown">
             <h3>September 2026</h3>
             <div className="calendar-weekdays">
@@ -36,7 +38,8 @@ export default function Calendar({ checkInDate, setCheckInDate, checkOutDate, se
                     </span>
                 ))}
             </div>
-
+            
+            {/* Days of the month grid layout function */}
             <div className="calendar-layout">
                {calendarGrid.map((day,index) => {
                     if (day === null) return <div key={`empty-${index}`} className="empty-day"></div>;
@@ -45,6 +48,7 @@ export default function Calendar({ checkInDate, setCheckInDate, checkOutDate, se
                     const isCheckOut = day === checkOutDate;
                     const isInRange = day > checkInDate && day < checkOutDate;
 
+                    // CheckIn and CheckOut day selection
                     return (
                         <button 
                         key={`day-${day}`} 
