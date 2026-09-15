@@ -1,5 +1,5 @@
 
-const API_URL = 'http://localhost:5000/api/reservations';
+const API_URL = 'https://airbnb-capstoneproject-backend.onrender.com';
 
 export const createNewReservation = async ({ username, checkInDate, checkOutDate, propertyName, guests }) => {
     const token = localStorage.getItem('token');
